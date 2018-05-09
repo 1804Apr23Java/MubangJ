@@ -2,8 +2,13 @@
 <html>
 <head>
 	<title>Home</title>
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
 	<link rel="stylesheet" href="foodWeb.css">
+
 </head>
 	<body>
 
@@ -27,18 +32,26 @@
 		  </div>
 		</nav>
 
-	<div class="formatImages">
-		<h1>Welcome to the Food Site</h1>
-	</div>
-
-		<form>
-	  	Name:<br>
-	  	<input type="text" name="name"><br>
-	  	Favorite food:<br>
-			<textarea name="message" rows="50" cols="100">Tell us about your favorite food.</textarea>
-			<br>
-	  	<button> Submit</button>
+	<div class="container">
+		<div class="formatImages">
+			<h1>Welcome to Foodie Central</h1>
+		</div>
+ 		<form>
+	   	<div class="form-group">
+	     <label for="usr">Name:</label>
+	     <input type="text" class="form-control" id="usr">
+	   	</div>
+		   <div class="form-group">
+		 		<label for="description">Describe your food:</label>
+		 		<textarea class="form-control" rows="20" id="comment"></textarea>
+			</div>
+			<button type="button" class="btn btn-secondary">Submit</button>
 		</form>
+
+		<div class="container">
+			<img src="food.jpg" class="rounded-circle" alt="Cinque Terre">
+		</div>
+
 
 	</body>
 </html>
