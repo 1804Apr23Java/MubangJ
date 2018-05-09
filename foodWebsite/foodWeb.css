@@ -1,0 +1,19 @@
+/* #7ec0ee
+c3cbd0 */
+
+h1 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+.formatImages {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+body {
+    background-color: #c3cbd0;
+}
