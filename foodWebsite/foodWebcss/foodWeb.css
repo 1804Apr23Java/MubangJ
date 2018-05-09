@@ -1,0 +1,36 @@
+/* #7ec0ee
+c3cbd0 */
+
+h1 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	color: #1A4568;
+}
+.formatImages {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	text-align:center;
+}
+
+.formatImages p {
+	text-align: left;
+}
+
+.description {
+	color: #1A4568;
+}
+
+body {
+		background-color: #c3cbd0;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
