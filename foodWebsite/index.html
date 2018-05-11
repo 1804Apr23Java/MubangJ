@@ -36,7 +36,7 @@
 		<div class="formatImages">
 			<h1>Welcome to Foodie Central</h1>
 		</div>
- 		<form>
+ 		<form method="get" id="typeComment">
 	   	<div class="form-group">
 	     <label for="usr">Name:</label>
 	     <input type="text" class="form-control" id="usr">
@@ -45,13 +45,25 @@
 		 		<label for="description">Describe your food:</label>
 		 		<textarea class="form-control" rows="20" id="comment"></textarea>
 			</div>
-			<button type="button" class="btn btn-secondary">Submit</button>
+			<button id="submission" type="submit" class="btn btn-secondary">Submit</button>
 		</form>
+
+		<div class="container">
+			<table class="allComments">
+
+			</table>
+			<!-- <p class="name"></p>
+			<p class="comment"></p> -->
+		</div>
 
 		<div class="container">
 			<img src="./images/food.jpg" class="rounded-circle" alt="Cinque Terre">
 		</div>
 
+		<div class="">
 
+		</div>
+
+	<script src="foodWeb.js" type="text/javascript"></script>
 	</body>
 </html>
