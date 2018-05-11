@@ -34,3 +34,8 @@ img {
     margin-right: auto;
     width: 100%;
 }
+
+table, tr, td {
+	width: 75%;
+	border-wid: 1px;
+}
