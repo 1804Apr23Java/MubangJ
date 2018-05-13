@@ -13,6 +13,8 @@ function data() {
 
 }
 
+// make a method that parse and display a list of JSON objects (Provided by a method)
+
 // read form into json file
 
 
