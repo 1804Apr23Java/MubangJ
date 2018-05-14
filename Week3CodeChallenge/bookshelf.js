@@ -7,9 +7,9 @@ function Book(title, author, genre, cover) {
 	this.cover = cover;
 }
 
-var books = [];
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "index.html", true);
+// var books = [];
+// var xhr = new XMLHttpRequest();
+// xhr.open("GET", "index.html", true);
 
 
 var bookShelf = document.querySelectorAll(".table");
@@ -25,6 +25,12 @@ booksTableBody.forEach(function(book) {
 	})
 })
 
+var books = {
+	table: []
+};
+
+var count = 0;
+
 // on submit save form data to json file
 var form = document.querySelector('form')
 form.addEventListener("submit", function() {
@@ -34,7 +40,7 @@ form.addEventListener("submit", function() {
 	var cover = document.getElementById("Cover").value;
 
 	var book = new Book(title, author, genre, cover)
-	books.push(book)
+	obj.table.push({id: count++, "title": title, "author":author, "genre":genre,"cover":cover})
 
 	var json = JSON.stringify()
 
