@@ -1,3 +1,5 @@
+// demo; http://avantiusa.com/avanti/wp-content/uploads/2017/01/51WT4gebGdL._SX332_BO1204203200_.jpg
+
 
 function Book(title, author, genre, cover) {
 
