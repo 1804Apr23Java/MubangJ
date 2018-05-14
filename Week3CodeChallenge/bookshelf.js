@@ -53,7 +53,7 @@ form.addEventListener("click", function() {
 	var cover = document.getElementById("Cover").value;
 
 	var img = document.createElement("img");
-	var row = booksTableBody[0].insertRow(books.length - 1);
+	var row = booksTableBody[0].insertRow(books.length);
 	var cell1 = row.insertCell(0).innerHTML= title;
 	var cell2 = row.insertCell(1).innerHTML= author;
 	var cell3 = row.insertCell(2).innerHTML= genre;
