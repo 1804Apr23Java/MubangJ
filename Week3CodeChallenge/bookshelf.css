@@ -1,0 +1,22 @@
+body {
+	background-color: #d5e1f3;
+}
+
+h1 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+input {
+	margin-bottom: 10px;
+}
+
+h5 {
+	margin-top: 60px;
+}
+
+tr {
+
+	text-align: center;
+}
