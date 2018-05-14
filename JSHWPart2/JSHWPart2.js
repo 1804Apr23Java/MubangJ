@@ -208,6 +208,7 @@ function delay() {
 function walkTheDom(node, func) {
 
 	if (node.children.length === 0) {
+		return;
 	} else {
 			Array.from(node.children).forEach(function(item) {
 
@@ -218,6 +219,6 @@ function walkTheDom(node, func) {
 	}
 }
 
-// var node = document.querySelectorAll("html")[0];
+var node = document.querySelectorAll("html")[0];
 
-// walkTheDom(node, function(child){console.log(child)})
+walkTheDom(node, function(child){console.log(child)})
