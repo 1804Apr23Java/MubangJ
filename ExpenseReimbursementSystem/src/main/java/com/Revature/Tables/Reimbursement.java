@@ -1,6 +1,6 @@
 package com.Revature.Tables;
 
-public class Reimbursements {
+public class Reimbursement {
 	
 	// status 0 = pending , status 1 = approved
 	
@@ -10,7 +10,7 @@ public class Reimbursements {
 	private int status;
 	private String date;
 	
-	public Reimbursements(int reimbursementId, int employeeId, long image, int status, String date) {
+	public Reimbursement(int reimbursementId, int employeeId, long image, int status, String date) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
