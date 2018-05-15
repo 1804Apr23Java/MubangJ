@@ -1,0 +1,26 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <servlet>
+  	<servlet-name>CommentsServlet</servlet-name>
+  	<display-name>CommentsServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.Revature.Servlets.CommentsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>FoodMainServlet</servlet-name>
+  	<display-name>FoodMainServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.Revature.Servlets.FoodMainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CommentsServlet</servlet-name>
+  	<url-pattern>/comments</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FoodMainServlet</servlet-name>
+  	<url-pattern>/FoodMainServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
