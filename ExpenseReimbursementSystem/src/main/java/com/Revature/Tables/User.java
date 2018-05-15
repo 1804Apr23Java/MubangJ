@@ -1,26 +1,28 @@
 package com.Revature.Tables;
 
-public class Employee {
+public class User {
 	
-	private int employeeId;
+	private int userId;
 	private String username;
 	private String password;
 	private String email;
-	
-	public Employee(int employeeId, String username, String password, String email) {
+	private int isManager;
+
+	public User(int UserId, String username, String password, String email, int isManager) {
 		super();
-		this.employeeId = employeeId;
+		this.userId = UserId;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.isManager = isManager;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -45,6 +47,14 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public int getIsManager() {
+		return isManager;
+	}
+
+	public void setIsManager(int isManager) {
+		this.isManager = isManager;
 	}
 	
 	
