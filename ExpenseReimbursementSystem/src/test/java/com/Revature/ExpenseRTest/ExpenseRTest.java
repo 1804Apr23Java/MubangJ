@@ -40,7 +40,7 @@ public class ExpenseRTest {
 		// throws exception if username/email exist in table
 		expectedException.expect(CreateEmployeeFailedException.class);
 
-		boolean worked = userDao.insertUser("newUser2", "newPass2", "newUser2@gmail.com", 0);
+		boolean worked = userDao.insertUser("newUser5", "newPass5", "newUser5@gmail.com", 0);
 		assertEquals(true, worked);
 	}
 	
@@ -85,12 +85,12 @@ public class ExpenseRTest {
 		assertEquals(true, userDao.updateUserEmail(1, "newUserUpdated@gmail.com"));
 	}
 	
-//	@Test
-//	public void updateEmailFailsDueToEmailAlreadyExistingInTable() throws SQLIntegrityConstraintViolationException, InvalidEmailException {
-//		
-//		expectedException.expect(InvalidEmailException.class);
-//		userDao.updateUserEmail(1, "newUser@gmail.com");
-//	}
+	@Test
+	public void updateEmailFailsDueToEmailAlreadyExistingInTable() throws SQLIntegrityConstraintViolationException, InvalidEmailException {
+		
+		expectedException.expect(InvalidEmailException.class);
+		userDao.updateUserEmail(1, "newUser2@gmail.com");
+	}
 	
 	@Test
 	public void updateIsManagerColumnInUsersTable() {
