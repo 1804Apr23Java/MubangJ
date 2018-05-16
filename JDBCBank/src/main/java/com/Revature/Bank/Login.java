@@ -1,12 +1,6 @@
 package com.Revature.Bank;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.Revature.Dao.ConnectionUtil;
 import com.Revature.Dao.UserDao;
 import com.Revature.Dao.UserDaoImpl;
 import com.Revature.Exceptions.UserDoesNotExistException;

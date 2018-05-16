@@ -2,7 +2,6 @@ package com.Revature.Dao;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import com.Revature.Exceptions.AccountHasNoTransactionHistoryException;
 import com.Revature.Exceptions.NoTransactionsForUserException;
 import com.Revature.Exceptions.TransactionDoesNotExistException;
 import com.Revature.Exceptions.UserDoesNotExistException;
-import com.Revature.Tables.Account;
 import com.Revature.Tables.Transaction;
 
 public class TransactionDaoImpl implements TransactionDao {

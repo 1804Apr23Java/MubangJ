@@ -6,11 +6,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import com.Revature.Bank.Login;
 import com.Revature.Dao.AccountDao;
 import com.Revature.Dao.AccountDaoImpl;
 import com.Revature.Dao.TransactionDao;

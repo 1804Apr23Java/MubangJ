@@ -1,12 +1,10 @@
 package com.Revature.Dao;
 
 import java.io.IOException;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import com.Revature.Exceptions.AccountDoesNotExistException;
 import com.Revature.Exceptions.AccountHasMoreThanZeroDollarsException;
 import com.Revature.Exceptions.OverDraftException;
 import com.Revature.Tables.Account;
-import com.Revature.Tables.User;
 
 public class AccountDaoImpl implements AccountDao {
 
@@ -202,7 +199,6 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public boolean superDeleteAccounts(int userId) {
 		PreparedStatement pstmt = null;
-		Account account = null;
 		try (Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
 
 			

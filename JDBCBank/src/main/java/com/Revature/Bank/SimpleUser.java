@@ -1,9 +1,6 @@
 package com.Revature.Bank;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -11,22 +8,17 @@ import com.Revature.Dao.AccountDao;
 import com.Revature.Dao.AccountDaoImpl;
 import com.Revature.Dao.TransactionDao;
 import com.Revature.Dao.TransactionDaoImpl;
-import com.Revature.Dao.UserDao;
 import com.Revature.Tables.Account;
 import com.Revature.Tables.Transaction;
 import com.Revature.Tables.User;
 
 public class SimpleUser {
 	
-	private Login login;
 	private User user;
-	private UserDao userDao;
 	private AccountDao accountDao = new AccountDaoImpl();
 	private TransactionDao transactionDao = new TransactionDaoImpl();
 	
 	public SimpleUser(Login login) {
-		this.login = login;
-		userDao = login.getUserDao();
 		user = login.getUser();
 	}
 
@@ -116,7 +108,6 @@ public class SimpleUser {
 			if (!transactions.isEmpty()) {
 				System.out.println("Transaction History: \n");
 				for (Transaction transaction : transactions) {
-					int counter = 1;
 					System.out.println("\tId: " + transaction.getTransactionId() + " | Account Name: " + transaction.getBankAccountName() + " | Amount: " + String.format("%.2f", transaction.getAmount()) + " | Date/Time: " + transaction.getDate() + "\n");
 				}
 			}

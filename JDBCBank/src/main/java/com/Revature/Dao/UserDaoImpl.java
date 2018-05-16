@@ -6,12 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Revature.Exceptions.EnterValidOptionException;
 import com.Revature.Exceptions.UserAlreadyExistException;
 import com.Revature.Exceptions.UserDoesNotExistException;
 import com.Revature.Tables.User;

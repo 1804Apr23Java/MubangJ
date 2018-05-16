@@ -1,12 +1,8 @@
 package com.Revature.Bank;
 
-import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.util.Scanner;
 
-import com.Revature.Exceptions.InvalidLoginException;
-import com.Revature.Exceptions.UserDoesNotExistException;
 
 public class Main {
 
@@ -286,6 +282,7 @@ public class Main {
 		
 	}
 		System.out.println("You have successfully logged out!");
+		sc.close();
 	}
 	
 }			
