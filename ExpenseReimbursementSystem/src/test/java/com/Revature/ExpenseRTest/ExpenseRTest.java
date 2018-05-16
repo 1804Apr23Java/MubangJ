@@ -119,12 +119,8 @@ public class ExpenseRTest {
 
 	@Test
 	public void insertReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
-		String curDir = System.getProperty("user.dir");
-		File SoL = new File("StatueOfLiberty.jpg");
-		System.out.println("Current sys dir: " + curDir);
-		System.out.println("Current abs dir: " + SoL.getAbsolutePath());
-		
-		File file = new File("StatueOfLiberty.jpg");
+
+		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
 		boolean worked = rsDao.insertReimbursement(1, file, 0);
 		assertEquals(true, worked);
 		

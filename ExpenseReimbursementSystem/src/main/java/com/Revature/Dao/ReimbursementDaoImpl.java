@@ -24,7 +24,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		InputStream inputstream = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
-			
+			// inputstream = part.getInputStream();
 			inputstream = new FileInputStream(image);
 			
 			String sql = "INSERT INTO REIMBURSEMENTS (EMPLOYEEID, IMAGE, STATUS) VALUES (?,?,?)";
