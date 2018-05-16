@@ -9,13 +9,12 @@ import com.Revature.domain.User;
 
 public class CommentDaoImpl implements CommentDao {
 	
-	private String filename = "./src/main/resources/connections.properties";
 
 	public void putComment(String username, String comment) {
 
 		PreparedStatement pstmt = null;
 
-		try (Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
 
 			String sql = "INSERT INTO FOODCOMMENTS (USERNAME, F_COMMENT) VALUES (?,?)";
 			pstmt = conn.prepareCall(sql);
@@ -39,7 +38,7 @@ public class CommentDaoImpl implements CommentDao {
 
 		List <User> comments = null;
 		
-		try (Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
 
 			comments = new ArrayList<User>();
 			String sql = "SELECT * FROM FOODCOMMENTS WHERE ROWNUM <= 10";

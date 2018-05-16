@@ -1,12 +1,9 @@
 package com.Revature.main;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.List;
 
 import com.Revature.dao.CommentDaoImpl;
-import com.Revature.dao.ConnectionUtil;
 import com.Revature.domain.User;
 
 public class Runner {
