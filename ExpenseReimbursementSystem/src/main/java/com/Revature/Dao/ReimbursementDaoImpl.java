@@ -15,7 +15,6 @@ import com.Revature.Tables.Reimbursement;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {
 	
-	private String filename = "connection.properties";
 
 	@Override
 	public boolean insertReimbursement(int employeeId, File image, int status) throws InvalidImageException {
@@ -23,7 +22,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		PreparedStatement pstmt = null;
 		InputStream inputstream = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			// inputstream = part.getInputStream();
 			inputstream = new FileInputStream(image);
 			

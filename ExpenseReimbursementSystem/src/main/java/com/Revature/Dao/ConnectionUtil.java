@@ -10,7 +10,10 @@ import java.util.Properties;
 
 public class ConnectionUtil {
 	
-	public static Connection getConnectionFromFile(String filename) throws IOException, SQLException {
+	private static String filename = "connection.properties";
+
+	
+	public static Connection getConnectionFromFile() throws IOException, SQLException {
 		Properties prop = new Properties();
 		InputStream in = new FileInputStream(filename);
 		prop.load(in);

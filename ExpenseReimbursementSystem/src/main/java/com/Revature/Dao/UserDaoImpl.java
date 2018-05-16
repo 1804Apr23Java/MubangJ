@@ -17,16 +17,14 @@ import com.Revature.Exceptions.UsernameExistException;
 import com.Revature.Tables.User;
 
 public class UserDaoImpl implements UserDao {
-
-	private String filename = "connection.properties";
 	
 	@Override
 	public boolean insertUser(String username, String password, String email, int manager) throws CreateEmployeeFailedException {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "INSERT INTO USERS (USERNAME, UPASSWORD, EMAIL, MANAGER) VALUES (?,?,?, ?)";
+			String sql = "INSERT INTO USERS (USERNAME, UPASSWORD, EMAIL, MANAGER) VALUES (?,?,?,?)";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -54,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement pstmt = null;
 		User user = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "SELECT USERID, USERNAME, UPASSWORD, EMAIL, MANAGER FROM USERS WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
@@ -89,7 +87,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement pstmt = null;
 		List<User> users = new ArrayList<>();
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "SELECT USERID, USERNAME, UPASSWORD, EMAIL, MANAGER FROM USERS";
 			pstmt = conn.prepareCall(sql);
@@ -118,7 +116,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUsername(int userId, String username) throws UsernameExistException {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "UPDATE USERS SET USERNAME = ? WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
@@ -145,7 +143,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUserPass(int userId, String password) throws InvalidPasswordException {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "UPDATE USERS SET UPASSWORD = ? WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
@@ -170,7 +168,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUserEmail(int userId, String email) throws InvalidEmailException {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "UPDATE USERS SET EMAIL = ? WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
@@ -197,7 +195,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateIsManager(int userId, int isManager) {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "UPDATE USERS SET MANAGER = ? WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
@@ -221,7 +219,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean deleteUser(int userId) throws EmployeeDoesNotExistException {
 		PreparedStatement pstmt = null;
 		
-		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
 			String sql = "DELETE FROM USERS WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
