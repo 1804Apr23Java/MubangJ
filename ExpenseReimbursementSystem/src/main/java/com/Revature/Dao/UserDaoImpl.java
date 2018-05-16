@@ -1,7 +1,6 @@
 package com.Revature.Dao;
 
 import java.io.IOException;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,7 +87,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getUsers() {
 		PreparedStatement pstmt = null;
-		List<User> users = new ArrayList();
+		List<User> users = new ArrayList<>();
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile(filename)) {
 			

@@ -1,7 +1,5 @@
 package com.Revature.Tables;
 
-import java.util.Date;
-
 public class ManagerDecision {
 	
 	private int managerId;

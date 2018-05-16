@@ -35,6 +35,9 @@ CREATE TABLE REIMBURSEMENTS (
 );
 /
 
+select * from reimbursements;
+/
+
 
 CREATE TABLE MANAGERDECISION (
     

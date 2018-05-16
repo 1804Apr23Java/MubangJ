@@ -2,17 +2,22 @@ package com.Revature.ExpenseRTest;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.Revature.Dao.ReimbursementDao;
+import com.Revature.Dao.ReimbursementDaoImpl;
 import com.Revature.Dao.UserDao;
 import com.Revature.Dao.UserDaoImpl;
 import com.Revature.Exceptions.CreateEmployeeFailedException;
 import com.Revature.Exceptions.EmployeeDoesNotExistException;
 import com.Revature.Exceptions.InvalidEmailException;
+import com.Revature.Exceptions.InvalidImageException;
 import com.Revature.Exceptions.InvalidPasswordException;
 import com.Revature.Exceptions.UsernameExistException;
 
@@ -108,8 +113,24 @@ public class ExpenseRTest {
 		userDao.deleteUser(1000);
 	}
 	
-}
-
 /********************* ReimbursementsDao Test  ***************************/
 	
+	ReimbursementDao rsDao = new ReimbursementDaoImpl();
+
+	@Test
+	public void insertReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
+		String curDir = System.getProperty("user.dir");
+		File SoL = new File("StatueOfLiberty.jpg");
+		System.out.println("Current sys dir: " + curDir);
+		System.out.println("Current abs dir: " + SoL.getAbsolutePath());
+		
+		File file = new File("StatueOfLiberty.jpg");
+		boolean worked = rsDao.insertReimbursement(1, file, 0);
+		assertEquals(true, worked);
+		
+	}
+	
+}
+
+
 

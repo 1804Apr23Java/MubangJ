@@ -2,6 +2,11 @@ package com.Revature.Exceptions;
 
 public class InvalidImageException extends Exception{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public InvalidImageException() {
 		super("Invalid Image");
 	}

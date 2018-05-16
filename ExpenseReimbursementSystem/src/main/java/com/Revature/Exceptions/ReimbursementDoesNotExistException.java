@@ -2,6 +2,11 @@ package com.Revature.Exceptions;
 
 public class ReimbursementDoesNotExistException extends Exception {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ReimbursementDoesNotExistException() {
 		super("The reimbursement does not exist.");
 	}
