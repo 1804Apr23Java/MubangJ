@@ -5,21 +5,29 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.Revature.Dao.ManagerDecisionDao;
+import com.Revature.Dao.ManagerDecisionDaoImpl;
 import com.Revature.Dao.ReimbursementDao;
 import com.Revature.Dao.ReimbursementDaoImpl;
 import com.Revature.Dao.UserDao;
 import com.Revature.Dao.UserDaoImpl;
 import com.Revature.Exceptions.CreateEmployeeFailedException;
+import com.Revature.Exceptions.DecisionAlreadyExistException;
+import com.Revature.Exceptions.DecisionDoesNotExistException;
 import com.Revature.Exceptions.EmployeeDoesNotExistException;
 import com.Revature.Exceptions.InvalidEmailException;
 import com.Revature.Exceptions.InvalidImageException;
 import com.Revature.Exceptions.InvalidPasswordException;
+import com.Revature.Exceptions.ReimbursementDoesNotExistException;
 import com.Revature.Exceptions.UsernameExistException;
+import com.Revature.Tables.ManagerDecision;
+import com.Revature.Tables.Reimbursement;
 
 public class ExpenseRTest {
 	
@@ -118,14 +126,149 @@ public class ExpenseRTest {
 	ReimbursementDao rsDao = new ReimbursementDaoImpl();
 
 	@Test
-	public void insertReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
+	public void createReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
 
 		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
-		boolean worked = rsDao.insertReimbursement(1, file, 0);
+		boolean worked = rsDao.createReimbursement(1, file, 0, 10000.99);
 		assertEquals(true, worked);
 		
 	}
 	
+	@Test
+	public void getReimbursementFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		
+		Reimbursement rbs = rsDao.getReimbursement(1);
+		assertEquals(1, rbs.getEmployeeId());
+	}
+	
+	@Test
+	public void getAllReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		
+		List<Reimbursement> allRbs = rsDao.getReimbursements();
+		assertEquals(4, allRbs.size());
+	}
+	
+	@Test
+	public void updateImageInReimbursementsTable() throws ReimbursementDoesNotExistException {
+		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
+		assertEquals(true, rsDao.updateImage(1, file));
+	}
+	
+	@Test
+	public void updateImageInReimbursementsTableFailsForNonExistentReimbursement() throws ReimbursementDoesNotExistException {
+		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
+
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		assertEquals(true, rsDao.updateImage(10000, file));
+	}
+	
+	@Test
+	public void updateStatusInReimbursementsTable() throws ReimbursementDoesNotExistException {
+		assertEquals(true, rsDao.updateStatus(1, 1));
+	}
+	
+	@Test
+	public void updateStatusInReimbursementsTableFailsForNonExistentReimbursement() throws ReimbursementDoesNotExistException {
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		assertEquals(true, rsDao.updateStatus(10000, 1));
+	}
+
+	@Test
+	public void updateAmountInReimbursementsTable() throws ReimbursementDoesNotExistException {
+		assertEquals(true, rsDao.updateAmount(1, 500.99));
+	}
+
+	@Test
+	public void updateAmountInReimbursementsTableFailsForNonExistentReimbursement() throws ReimbursementDoesNotExistException {
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		assertEquals(true, rsDao.updateAmount(10000, 500.99));
+	}
+	
+	@Test
+	public void deleteReimbursementInReimbursementsTable() throws ReimbursementDoesNotExistException {
+		// once reimbursement is removed, need to use reimbursementdoesnotexist exception to 
+		// catch the expected exception so the test pass
+		
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		assertEquals(true, rsDao.deleteReimbursement(3));
+	}
+	
+	/********************* ManagerDecisionDao Test  ***************************/
+
+	ManagerDecisionDao manDec = new ManagerDecisionDaoImpl();
+	
+	// user already exist so will fail next time the test is run. Should be true in assertEquals
+	@Test
+	public void insertDecisionIntoManagerDecisionTable() throws DecisionAlreadyExistException {
+
+		boolean worked = manDec.createDecision(1, 4, 0);
+		assertEquals(true, worked);
+		
+	}
+	
+	@Test
+	public void failtToInsertExistingDecisionIntoManagerDecisionTable() throws DecisionAlreadyExistException {
+		
+		expectedException.expect(DecisionAlreadyExistException.class);
+		boolean worked = manDec.createDecision(1, 1, 0);
+		assertEquals(true, worked);
+		
+	}
+	
+	@Test
+	public void getAllDecisionsFromManagerDecisionTable() {
+		
+		List<ManagerDecision> allDecisions = manDec.getDecisions();
+		assertEquals(1, allDecisions.size());
+	}
+	
+	@Test
+	public void getOneDecisionFromManagerDecisionTable() throws DecisionDoesNotExistException {
+		
+		ManagerDecision md = manDec.getDecision(1, 1);
+		assertEquals(0, md.getDecision());
+	}
+	
+	@Test
+	public void failToGetNotExistentDecisionFromManagerDecisionTable() throws DecisionDoesNotExistException {
+		
+		expectedException.expect(DecisionDoesNotExistException.class);
+		manDec.getDecision(1000000, 100000);
+	}
+	
+	@Test 
+	public void updateDecisionInManagerDecisionTable() throws DecisionDoesNotExistException {
+		
+		assertEquals(true, manDec.updateDecision(1, 1, 1));
+	}
+	
+	@Test
+	public void failToUpdateNonExistentDecisionInManagerDecisionTable() throws DecisionDoesNotExistException {
+	
+		expectedException.expect(DecisionDoesNotExistException.class);
+
+		manDec.updateDecision(100000, 1000000, 1);
+	}
+	
+	// should not have expectedException, but the decision has already beeen removed from
+	// table therefore the expectedException needs to be included for the test to pass
+	
+	@Test 
+	public void deleteDecisionInManagerDecisionTable() throws DecisionDoesNotExistException {
+		expectedException.expect(DecisionDoesNotExistException.class);
+
+		assertEquals(true, manDec.deleteDecision(1,4));
+	}
+	
+	@Test 
+	public void failToDeleteNonExistentDecisionInManagerDecisionTable() throws DecisionDoesNotExistException {
+		expectedException.expect(DecisionDoesNotExistException.class);
+		manDec.deleteDecision(1,4);
+	}
 }
 
 

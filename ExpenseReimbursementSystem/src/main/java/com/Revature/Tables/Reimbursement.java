@@ -1,23 +1,38 @@
 package com.Revature.Tables;
 
+import java.sql.Blob;
+
 public class Reimbursement {
 	
 	// status 0 = pending , status 1 = approved
 	
 	private int reimbursementId;
 	private int employeeId;
-	private long image;
+	private Blob image;
 	private int status;
+	private double amount;
 	private String date;
-	
-	public Reimbursement(int reimbursementId, int employeeId, long image, int status, String date) {
+
+	public Reimbursement(int reimbursementId, int employeeId, Blob image, int status, double amount, String date) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
 		this.image = image;
 		this.status = status;
+		this.amount = amount;
 		this.date = date;
 	}
+
+
+	public double getAmount() {
+		return amount;
+	}
+
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 
 	public int getReimbursementId() {
 		return reimbursementId;
@@ -35,11 +50,11 @@ public class Reimbursement {
 		this.employeeId = employeeId;
 	}
 
-	public long getImage() {
+	public Blob getImage() {
 		return image;
 	}
 
-	public void setImage(long image) {
+	public void setImage(Blob image) {
 		this.image = image;
 	}
 
