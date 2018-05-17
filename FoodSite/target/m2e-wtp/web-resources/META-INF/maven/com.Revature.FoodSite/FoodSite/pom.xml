@@ -26,8 +26,23 @@
         <version>3.0.1</version>
         <scope>provided</scope>
 	</dependency>
+	
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>12.1.0.1</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>FoodSite</finalName>
   </build>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>com.oracle.ojdbc</groupId>
+  			<artifactId>ojdbc</artifactId>
+  			<version>12.1.0.1</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>

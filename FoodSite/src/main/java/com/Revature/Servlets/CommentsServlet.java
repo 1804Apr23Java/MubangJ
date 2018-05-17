@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Revature.dao.CommentDao;
 import com.Revature.dao.CommentDaoImpl;
 
 /**
  * Servlet implementation class CommentsServlet
  */
+
+@WebServlet("/CommentsServlet")
 public class CommentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +52,7 @@ public class CommentsServlet extends HttpServlet {
 		String user = request.getParameter("user");
 		String comment = request.getParameter("comments");
 
-		CommentDaoImpl cdi = new CommentDaoImpl();
+		CommentDao cdi = new CommentDaoImpl();
 
 		cdi.putComment(user, comment);
 
