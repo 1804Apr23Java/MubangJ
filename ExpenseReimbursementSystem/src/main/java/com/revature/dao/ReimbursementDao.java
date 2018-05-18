@@ -12,11 +12,16 @@ public interface ReimbursementDao {
 	boolean createReimbursement(int employeeId, File image, int status, double amount) throws InvalidImageException;
 	
 	Reimbursement getReimbursement(int reimbursementId) throws ReimbursementDoesNotExistException;
-	List<Reimbursement> getReimbursements();
+	List<Reimbursement> getEmpReimbursements(int employeeId) throws ReimbursementDoesNotExistException;
+	List<Reimbursement> getManReimbursements(int managerId) throws ReimbursementDoesNotExistException;
+
 	
 	boolean updateImage(int reimbursementId, File image) throws ReimbursementDoesNotExistException;
 	boolean updateStatus(int reimbursementId, int status) throws ReimbursementDoesNotExistException;
 	boolean updateAmount(int reimbursementId, double amount) throws ReimbursementDoesNotExistException;
 	
 	boolean deleteReimbursement(int reimbursementId) throws ReimbursementDoesNotExistException;
+	boolean deleteAllReimbursementsByEmpId(int employeeId) throws ReimbursementDoesNotExistException;
+	boolean deleteAllReimbursementsByManId(int managerId) throws ReimbursementDoesNotExistException;
+
 }

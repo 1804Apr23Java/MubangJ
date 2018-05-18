@@ -18,10 +18,17 @@
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link" href="#">Features</a>
-	      <a class="nav-item nav-link" href="#">Pricing</a>
-	      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+	      <a class="nav-item nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+	      <a class="nav-item nav-link" href="/login">Login</a>
+	      <a class="nav-item nav-link" href="/register">Register</a>
+	      <a class="nav-item nav-link" href="/profile">Profile</a>
+	      <a class="nav-item nav-link" href="//EditProfileServlet">Edit Profile</a>	      
+	      <a class="nav-item nav-link" href="/reimbursementrequest">Create Request</a>
+	      <a class="nav-item nav-link" href="/logut">Logout</a>
+	      <a class="nav-item nav-link" href="/view">View</a>
+	      
+	      
+	      
 	    </div>
 	  </div>
 	</nav>

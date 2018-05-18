@@ -8,31 +8,25 @@ public class Reimbursement {
 	
 	private int reimbursementId;
 	private int employeeId;
+	private int managerId;
+	private String purpose;
 	private Blob image;
 	private int status;
 	private double amount;
 	private String date;
-
-	public Reimbursement(int reimbursementId, int employeeId, Blob image, int status, double amount, String date) {
+	
+	public Reimbursement(int reimbursementId, int employeeId, int managerId, String purpose, Blob image, int status,
+			double amount, String date) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
+		this.managerId = managerId;
+		this.purpose = purpose;
 		this.image = image;
 		this.status = status;
 		this.amount = amount;
 		this.date = date;
 	}
-
-
-	public double getAmount() {
-		return amount;
-	}
-
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
 
 	public int getReimbursementId() {
 		return reimbursementId;
@@ -48,6 +42,22 @@ public class Reimbursement {
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public int getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 
 	public Blob getImage() {
@@ -66,6 +76,14 @@ public class Reimbursement {
 		this.status = status;
 	}
 
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -75,5 +93,9 @@ public class Reimbursement {
 	}
 	
 	
+	
+	
+
+
 	
 }

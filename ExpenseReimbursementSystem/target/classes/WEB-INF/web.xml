@@ -52,6 +52,24 @@
   	<description></description>
   	<servlet-class>com.revature.servlets.LogoutServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>WelcomePageServlet</servlet-name>
+  	<display-name>WelcomePageServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.WelcomePageServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewRequestServlet</servlet-name>
+  	<display-name>ViewRequestServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.ViewRequestServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditProfileServlet</servlet-name>
+  	<display-name>EditProfileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.EditProfileServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MasterServlet</servlet-name>
   	<url-pattern>/home</url-pattern>
@@ -83,5 +101,17 @@
   <servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WelcomePageServlet</servlet-name>
+  	<url-pattern>/welcome</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewRequestServlet</servlet-name>
+  	<url-pattern>/view</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditProfileServlet</servlet-name>
+  	<url-pattern>/EditProfileServlet</url-pattern>
   </servlet-mapping>
 </web-app>

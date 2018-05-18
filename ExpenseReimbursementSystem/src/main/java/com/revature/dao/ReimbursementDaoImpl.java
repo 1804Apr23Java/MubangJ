@@ -59,7 +59,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE REIMBURSEMENTID = ?";
+			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE REIMBURSEMENTID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, reimbursementId);
 			ResultSet rs = pstmt.executeQuery();
@@ -67,12 +67,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			if (rs.next()) {
 				int reimburseId = rs.getInt("REIMBURSEMENTID");
 				int employeeId = rs.getInt("EMPLOYEEID");
+				int managerId = rs.getInt("MANAGERID");
+				String purpose = rs.getString("PURPOSE");
 				Blob image = rs.getBlob("IMAGE");
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
 				
-				rb = new Reimbursement(reimburseId, employeeId, image, status, amount, dateTime);
+				rb = new Reimbursement(reimburseId, employeeId, managerId, purpose, image, status, amount, dateTime);
 
 			} else {
 				throw new ReimbursementDoesNotExistException();
@@ -89,31 +91,79 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public List<Reimbursement> getReimbursements() {
+	public List<Reimbursement> getEmpReimbursements(int employeeId) throws ReimbursementDoesNotExistException{
 		PreparedStatement pstmt = null;
 		List<Reimbursement> allRbs = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS";
+			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE EMPLOYEEID = ?";
 			pstmt = conn.prepareCall(sql);
+			pstmt.setInt(1, employeeId);
+
+			ResultSet rs = pstmt.executeQuery();
+			
+			allRbs = new ArrayList<>();
+			while (rs.next()) {
+				int reimburseId = rs.getInt("REIMBURSEMENTID");
+				int employeeIdd = rs.getInt("EMPLOYEEID");
+				int managerId = rs.getInt("MANAGERID");
+				String purpose = rs.getString("PURPOSE");
+				Blob image = rs.getBlob("IMAGE");
+				int status = rs.getInt("STATUS");
+				String dateTime = rs.getTimestamp("DATETIME").toString();
+				double amount = rs.getDouble("AMOUNT");
+				
+				allRbs.add(new Reimbursement(reimburseId, employeeIdd, managerId, purpose, image, status, amount, dateTime));
+
+			} 
+			
+			conn.close();
+			
+			if(allRbs.isEmpty()) {
+				throw new ReimbursementDoesNotExistException();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return allRbs;
+	}
+	
+	@Override
+	public List<Reimbursement> getManReimbursements(int managerId) throws ReimbursementDoesNotExistException{
+		PreparedStatement pstmt = null;
+		List<Reimbursement> allRbs = null;
+		
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			
+			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE MANAGERID = ?";
+			pstmt = conn.prepareCall(sql);
+			pstmt.setInt(1, managerId);
 			ResultSet rs = pstmt.executeQuery();
 			
 			allRbs = new ArrayList<>();
 			while (rs.next()) {
 				int reimburseId = rs.getInt("REIMBURSEMENTID");
 				int employeeId = rs.getInt("EMPLOYEEID");
+				int managerIdd = rs.getInt("MANAGERID");
+				String purpose = rs.getString("PURPOSE");
 				Blob image = rs.getBlob("IMAGE");
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
 				
-				allRbs.add(new Reimbursement(reimburseId, employeeId, image, status, amount, dateTime));
+				allRbs.add(new Reimbursement(reimburseId, employeeId, managerIdd, purpose, image, status, amount, dateTime));
 
 			} 
 			
 			conn.close();
-
+			
+			if(allRbs.isEmpty()) {
+				throw new ReimbursementDoesNotExistException();
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -208,6 +258,54 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			String sql = "DELETE FROM REIMBURSEMENTS WHERE REIMBURSEMENTID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, reimbursementId);
+			int i = pstmt.executeUpdate();
+			conn.close();
+
+			if (i > 0) return true;
+			else throw new ReimbursementDoesNotExistException(); 
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteAllReimbursementsByEmpId(int employeeId) throws ReimbursementDoesNotExistException{
+		PreparedStatement pstmt = null;
+		
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			
+			String sql = "DELETE FROM REIMBURSEMENTS WHERE EMPLOYEEID = ?";
+			pstmt = conn.prepareCall(sql);
+			pstmt.setInt(1, employeeId);
+			int i = pstmt.executeUpdate();
+			conn.close();
+
+			if (i > 0) return true;
+			else throw new ReimbursementDoesNotExistException(); 
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteAllReimbursementsByManId(int managerId) throws ReimbursementDoesNotExistException{
+		PreparedStatement pstmt = null;
+		
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			
+			String sql = "DELETE FROM REIMBURSEMENTS WHERE MANAGERID = ?";
+			pstmt = conn.prepareCall(sql);
+			pstmt.setInt(1, managerId);
 			int i = pstmt.executeUpdate();
 			conn.close();
 

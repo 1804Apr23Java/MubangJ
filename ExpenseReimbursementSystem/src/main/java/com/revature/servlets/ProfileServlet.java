@@ -18,9 +18,12 @@ public class ProfileServlet extends HttpServlet {
 		//get the current Session or a null
 		HttpSession session = req.getSession(false);
 		//check whether a Session exists
-		if (session != null && session.getAttribute("username") != null) {
-			req.setAttribute("username", session.getAttribute("username"));
-			req.setAttribute("email", session.getAttribute("email"));
+		String username = (String) session.getAttribute("username");
+		String email = (String) session.getAttribute("email");
+		
+		if (session != null && username != null) {
+			req.setAttribute("username", username);
+			req.setAttribute("email", email);
 
 			req.getRequestDispatcher("profile.jsp").forward(req, resp);
 		} else {

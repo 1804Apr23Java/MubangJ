@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ManagerDecisionServlet
@@ -12,28 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 public class ManagerDecisionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ManagerDecisionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//get the current Session or a null
+		HttpSession session = req.getSession(false);
+		//check whether a Session exists
+		String username = (String) session.getAttribute("username");
+		String email = (String) session.getAttribute("email");
+		
+		if (session != null && username != null) {
+			req.setAttribute("username", username);
+			req.setAttribute("email", email);
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+			req.getRequestDispatcher("managerDecisions.jsp").forward(req, resp);
+		} else {
+			resp.sendRedirect("login");
+		}
 	}
 
 }

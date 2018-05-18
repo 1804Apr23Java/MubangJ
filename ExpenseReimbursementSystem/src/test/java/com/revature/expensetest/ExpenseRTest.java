@@ -153,10 +153,31 @@ public class ExpenseRTest {
 	}
 	
 	@Test
-	public void getAllReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+	public void getAllEmpReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
-		List<Reimbursement> allRbs = rsDao.getReimbursements();
+		List<Reimbursement> allRbs = rsDao.getEmpReimbursements(1);
 		assertEquals(4, allRbs.size());
+	}
+	
+	@Test
+	public void FailToGetNonExistentEmpReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		rsDao.getEmpReimbursements(10000);
+	}
+	
+	@Test
+	public void getAllManReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		
+		List<Reimbursement> allRbs = rsDao.getManReimbursements(0);
+		assertEquals(4, allRbs.size());
+	}
+	
+	@Test
+	public void FailToGetNonExistentManReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		rsDao.getManReimbursements(10000);
 	}
 	
 	@Test
@@ -231,21 +252,28 @@ public class ExpenseRTest {
 	}
 	
 	@Test
-	public void getAllDecisionsFromManagerDecisionTable() {
+	public void getAllDecisionsFromManagerDecisionTable() throws DecisionDoesNotExistException {
 		
-		List<ManagerDecision> allDecisions = manDec.getDecisions();
-		assertEquals(1, allDecisions.size());
+		List<ManagerDecision> allDecisions = manDec.getDecisions(1);
+		assertEquals(2, allDecisions.size());
+	}
+	
+	@Test
+	public void failToGetNonExistentDecisionsFromManagerDecisionTable() throws DecisionDoesNotExistException {
+		
+		expectedException.expect(DecisionDoesNotExistException.class);
+		manDec.getDecisions(1000000);
 	}
 	
 	@Test
 	public void getOneDecisionFromManagerDecisionTable() throws DecisionDoesNotExistException {
 		
 		ManagerDecision md = manDec.getDecision(1, 1);
-		assertEquals(0, md.getDecision());
+		assertEquals(1, md.getDecision());
 	}
 	
 	@Test
-	public void failToGetNotExistentDecisionFromManagerDecisionTable() throws DecisionDoesNotExistException {
+	public void failToGetNonExistentDecisionFromManagerDecisionTable() throws DecisionDoesNotExistException {
 		
 		expectedException.expect(DecisionDoesNotExistException.class);
 		manDec.getDecision(1000000, 100000);
