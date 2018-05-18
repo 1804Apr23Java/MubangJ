@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("index.jsp").forward(request,response);
+		request.getRequestDispatcher("login.jsp").forward(request,response);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("email",user.getEmail());
 		session.setAttribute("isManager",user.getIsManager());
 		session.setAttribute("problem", null);
-		response.sendRedirect("profile");
+		response.sendRedirect("home");
 		
 	}
 

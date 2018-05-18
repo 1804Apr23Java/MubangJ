@@ -12,20 +12,19 @@
 	<body>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-	  <a class="navbar-brand" href="#">Reimbursements</a>
+	  <a class="navbar-brand" href="./home">Reimbursements</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link" href="/login">Login</a>
-	      <a class="nav-item nav-link" href="/register">Register</a>
-	      <a class="nav-item nav-link" href="/profile">Profile</a>
-	      <a class="nav-item nav-link" href="//EditProfileServlet">Edit Profile</a>	      
-	      <a class="nav-item nav-link" href="/reimbursementrequest">Create Request</a>
-	      <a class="nav-item nav-link" href="/logut">Logout</a>
-	      <a class="nav-item nav-link" href="/view">View</a>
+	      <a class="nav-item nav-link active" href="./home">Home <span class="sr-only">(current)</span></a>
+	      <a class="nav-item nav-link" href="./profile">Profile</a>
+	      <a class="nav-item nav-link" href="./EditProfileServlet">Edit Profile</a>	      
+	      <a class="nav-item nav-link" href="./createrequest">Create Request</a>
+	      <a class="nav-item nav-link" href="./view">View</a>
+	      <a class="nav-item nav-link" href="./logout">Logout</a>
+	      
 	      
 	      
 	      

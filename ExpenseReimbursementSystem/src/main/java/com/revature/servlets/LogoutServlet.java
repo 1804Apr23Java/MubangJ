@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		PrintWriter pw = resp.getWriter();
 //		req.getRequestDispatcher("base.html").include(req, resp);
-		req.getRequestDispatcher("index.jsp").include(req, resp);
+//		req.getRequestDispatcher("login.jsp").include(req, resp);
 
 		HttpSession session = req.getSession(false);
 		if (session != null) {
@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
 		}
 		pw.println("you are successfully logged out");
 		pw.println("</div>");
-		pw.println("<a href=\"index.html\">Go back</a>");
+		pw.println("<a href=\"./login\">Go back</a>");
 		pw.println("</body></html>");
 	}
 

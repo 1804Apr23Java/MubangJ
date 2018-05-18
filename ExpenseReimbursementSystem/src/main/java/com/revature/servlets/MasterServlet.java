@@ -2,7 +2,6 @@ package com.revature.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +32,8 @@ public class MasterServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		if (session != null && session.getAttribute("username") != null) {
-			
-			if (Integer.parseInt((String) session.getAttribute("isManager")) == 1) {
+			int isManager = (int) session.getAttribute("isManager");
+			if (isManager == 1) {
 				
 				request.getRequestDispatcher("managerDecisions.jsp").forward(request, response);
 			}

@@ -19,15 +19,10 @@
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link active" href="./home">Home <span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link" href="./profile">Profile</a>
-	      <a class="nav-item nav-link" href="./EditProfileServlet">Edit Profile</a>	      
-	      <a class="nav-item nav-link" href="./createrequest">Create Request</a>
-	      <a class="nav-item nav-link" href="./view">View</a>
+	      <a class="nav-item nav-link" href="./login">Login</a>
+	      <a class="nav-item nav-link" href="./register">Register</a>
 	      <a class="nav-item nav-link" href="./logout">Logout</a>
-	      
-	      
-	      
-	      
+	      	      
 	    </div>
 	  </div>
 	</nav>

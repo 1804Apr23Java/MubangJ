@@ -1,4 +1,4 @@
-<%@ include file="./partials/header.jsp" %>
+<%@ include file="./partials/loggedOutHeader.jsp" %>
 
 <div class="container center">
 	<h1>Register</h1>

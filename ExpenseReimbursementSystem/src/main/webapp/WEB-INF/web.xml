@@ -70,6 +70,12 @@
   	<description></description>
   	<servlet-class>com.revature.servlets.EditProfileServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateRequestServlet</servlet-name>
+  	<display-name>CreateRequestServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.CreateRequestServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MasterServlet</servlet-name>
   	<url-pattern>/home</url-pattern>
@@ -113,5 +119,9 @@
   <servlet-mapping>
   	<servlet-name>EditProfileServlet</servlet-name>
   	<url-pattern>/EditProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateRequestServlet</servlet-name>
+  	<url-pattern>/createrequest</url-pattern>
   </servlet-mapping>
 </web-app>
