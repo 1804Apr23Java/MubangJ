@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.DatatypeConverter;
+
 import com.revature.exceptions.InvalidImageException;
 import com.revature.exceptions.ReimbursementDoesNotExistException;
 import com.revature.tables.Reimbursement;
@@ -21,7 +23,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	
 
 	@Override
-	public boolean createReimbursement(int employeeId, File image, int status, double amount) throws InvalidImageException {
+	public boolean createReimbursement(int employeeId, int managerId, String purpose, File image, int status, double amount) throws InvalidImageException {
 		
 		PreparedStatement pstmt = null;
 		InputStream inputstream = null;
@@ -29,15 +31,16 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			// inputstream = part.getInputStream();
 			inputstream = new FileInputStream(image);
-			
-			String sql = "INSERT INTO REIMBURSEMENTS (EMPLOYEEID, IMAGE, STATUS, AMOUNT) VALUES (?,?,?, ?)";
+			String sql = "INSERT INTO REIMBURSEMENTS (EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT) VALUES (?,?,?,?,?,?)";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, employeeId);
+			pstmt.setInt(2, managerId);
+			pstmt.setString(3, purpose);
 			if (inputstream != null) {
-				pstmt.setBlob(2, inputstream);
+				pstmt.setBlob(4, inputstream);
 			}
-			pstmt.setInt(3, status);
-			pstmt.setDouble(4, amount);
+			pstmt.setInt(5, status);
+			pstmt.setDouble(6, amount);
 			int i = pstmt.executeUpdate();
 			conn.close();
 
@@ -69,7 +72,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int employeeId = rs.getInt("EMPLOYEEID");
 				int managerId = rs.getInt("MANAGERID");
 				String purpose = rs.getString("PURPOSE");
-				Blob image = rs.getBlob("IMAGE");
+				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
@@ -109,7 +112,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int employeeIdd = rs.getInt("EMPLOYEEID");
 				int managerId = rs.getInt("MANAGERID");
 				String purpose = rs.getString("PURPOSE");
-				Blob image = rs.getBlob("IMAGE");
+				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
@@ -150,7 +153,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int employeeId = rs.getInt("EMPLOYEEID");
 				int managerIdd = rs.getInt("MANAGERID");
 				String purpose = rs.getString("PURPOSE");
-				Blob image = rs.getBlob("IMAGE");
+				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");

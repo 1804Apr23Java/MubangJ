@@ -10,12 +10,12 @@ public class Reimbursement {
 	private int employeeId;
 	private int managerId;
 	private String purpose;
-	private Blob image;
+	private String image;
 	private int status;
 	private double amount;
 	private String date;
 	
-	public Reimbursement(int reimbursementId, int employeeId, int managerId, String purpose, Blob image, int status,
+	public Reimbursement(int reimbursementId, int employeeId, int managerId, String purpose, String image, int status,
 			double amount, String date) {
 		super();
 		this.reimbursementId = reimbursementId;
@@ -60,11 +60,11 @@ public class Reimbursement {
 		this.purpose = purpose;
 	}
 
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

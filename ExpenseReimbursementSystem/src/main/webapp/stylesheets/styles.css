@@ -3,3 +3,10 @@
 .center {
 	margin-top: 15%;
 }
+
+/*  TODO */
+body h1 {
+	margin: 100px;
+	text-align: center;
+	margin: 5% 5%;
+}

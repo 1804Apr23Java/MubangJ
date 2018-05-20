@@ -16,27 +16,29 @@ import com.revature.exceptions.ReimbursementDoesNotExistException;
 import com.revature.tables.Reimbursement;
 
 /**
- * Servlet implementation class WelcomePageServlet
+ * Servlet implementation class AllReimbursements
  */
-public class WelcomePageServlet extends HttpServlet {
+public class AllReimbursements extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public WelcomePageServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+
+		ReimbursementDao rbs = new ReimbursementDaoImpl();
+		int userId = (int) session.getAttribute("userId");
+		List<Reimbursement> reimbursements = null;
+		try {
+			reimbursements = rbs.getEmpReimbursements(userId);
+		} catch (ReimbursementDoesNotExistException e) {
+		}
 		
-//		request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
+		
+		ObjectMapper om = new ObjectMapper();
+		
+		String reimbursementsString = om.writeValueAsString(reimbursements);
+		response.getWriter().write("{\"reimbursements\":"+reimbursementsString+"}");
 	}
 
 }

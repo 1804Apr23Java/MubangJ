@@ -50,13 +50,15 @@ public class LoginServlet extends HttpServlet {
 			user = userDao.getUserByNameAndPass(username, password);
 			
 		} catch (EmployeeDoesNotExistException e) {
-			response.sendRedirect("error");
+//			response.sendRedirect("error");
 			session.setAttribute("problem", "incorrect password");
 			response.sendRedirect("login");
 			return;
 		}
 		
 		session.setAttribute("username", user.getUsername());
+		session.setAttribute("firstname", user.getfName());
+		session.setAttribute("lastname", user.getLName());
 		session.setAttribute("userId", user.getUserId());
 		session.setAttribute("email",user.getEmail());
 		session.setAttribute("isManager",user.getIsManager());

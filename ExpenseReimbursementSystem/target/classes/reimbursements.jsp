@@ -4,51 +4,28 @@
 <div class="container">
 	<h1>History of Reimbursements</h1>
 
-	<span>radio button: resolved, pending</span>
-	<span>options: add reimbursement</span>
-	
-	<table class="table">
+	<span> <a href="createrequest">add reimbursement</a></span>
+
+	<form name="filterForm">
+		<input id="allR" type="radio" name="filterType" value="allR" checked> All Reimbursements<br>
+		<input id="pendR" type="radio" name="filterType" value="pendR"> Pending Reimbursements<br>
+		<input id="resR" type="radio" name="filterType" value="resR"> Resolved Reimbursements
+	</form>
+
+	<table class="table table-hover">
 	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">ReimbursementId</th>
-	      <th scope="col">EmployeeId</th>
-	      <th scope="col">Purpose</th>
-	      <th scope="col">Status</th>
-	      <th scope="col">Amount</th>
-	      <th scope="col">Date Created</th>     
+	    <tr id="RowForHead">
 	    </tr>
 	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <th scope="col">ReimbursementId</th>
-	      <th scope="col">EmployeeId</th>
-	      <th scope="col">Purpose</th>
-	      <th scope="col">Status</th>
-	      <th scope="col">Amount</th>
-	      <th scope="col">Date Created</th>  
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td scope="col">ReimbursementId</td>
-	      <td scope="col">EmployeeId</td>
-	      <td scope="col">Purpose</td>
-	      <td scope="col">Status</td>
-	      <td scope="col">Amount</td>
-	      <td scope="col">Date Created</td>  
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td scope="col">ReimbursementId</td>
-	      <td scope="col">EmployeeId</td>
-	      <td scope="col">Purpose</td>
-	      <td scope="col">Status</td>
-	      <td scope="col">Amount</td>
-	      <td scope="col">Date Created</td>  
-	    </tr>
+	  <tbody id="RowForBody">
 	  </tbody>
 	</table>
+	
+	<div id="Test">
+		
+	</div>
 </div>
+
+<script type="text/javascript" src="./scripts/displayReimbursements.js"></script>
 
 <%@ include file="./partials/footer.jsp" %>

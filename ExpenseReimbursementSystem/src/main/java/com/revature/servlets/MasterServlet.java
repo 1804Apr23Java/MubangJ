@@ -32,13 +32,8 @@ public class MasterServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		if (session != null && session.getAttribute("username") != null) {
-			int isManager = (int) session.getAttribute("isManager");
-			if (isManager == 1) {
-				
-				request.getRequestDispatcher("managerDecisions.jsp").forward(request, response);
-			}
 			
-			request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
+			response.sendRedirect("welcome");
 			
 		} else {
 			response.sendRedirect("login");

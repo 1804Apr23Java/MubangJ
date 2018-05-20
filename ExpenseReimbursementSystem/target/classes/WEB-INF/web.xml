@@ -76,6 +76,12 @@
   	<description></description>
   	<servlet-class>com.revature.servlets.CreateRequestServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AllReimbursements</servlet-name>
+  	<display-name>AllReimbursements</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.AllReimbursements</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MasterServlet</servlet-name>
   	<url-pattern>/home</url-pattern>
@@ -114,14 +120,18 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ViewRequestServlet</servlet-name>
-  	<url-pattern>/view</url-pattern>
+  	<url-pattern>/reimbursement/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>EditProfileServlet</servlet-name>
-  	<url-pattern>/EditProfileServlet</url-pattern>
+  	<url-pattern>/editprofile</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>CreateRequestServlet</servlet-name>
   	<url-pattern>/createrequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AllReimbursements</servlet-name>
+  	<url-pattern>/allreimbursements</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -48,13 +48,13 @@ public class ExpenseRTest {
 		// throws exception if username/email exist in table
 		expectedException.expect(CreateEmployeeFailedException.class);
 
-		boolean worked = userDao.insertUser("newUser5", "newPass5", "newUser5@gmail.com", 0);
+		boolean worked = userDao.insertUser("newUser6", "newPass6", "Dave", "Brewer", "newUser5@gmail.com", 0);
 		assertEquals(true, worked);
 	}
 	
 	@Test
-	public void getAllEmployeesFromUsersTable() {
-		assertEquals(2, userDao.getUsers().size());
+	public void getAllUsersFromUsersTable() {
+		assertEquals(5, userDao.getUsers().size());
 	}
 	
 	@Test
@@ -112,9 +112,42 @@ public class ExpenseRTest {
 	}
 	
 	@Test
-	public void updateIsManagerColumnInUsersTable() {
+	public void updateIsManagerColumnInUsersTable() throws EmployeeDoesNotExistException {
 		
 		assertEquals(true, userDao.updateIsManager(1, 1));
+	}
+	
+	@Test
+	public void updateIsManagerFails() throws EmployeeDoesNotExistException  {
+		
+		expectedException.expect(EmployeeDoesNotExistException.class);
+		userDao.updateIsManager(1000000, 1);
+	}
+	
+	@Test
+	public void updateUserFirstName() throws EmployeeDoesNotExistException {
+		
+		assertEquals(true, userDao.updateFirstName(1, "Jake"));
+	}
+	
+	@Test
+	public void updateFirstNameFails() throws EmployeeDoesNotExistException  {
+		
+		expectedException.expect(EmployeeDoesNotExistException.class);
+		userDao.updateFirstName(100000000, "Jake");
+	}
+	
+	@Test
+	public void updateLastName() throws EmployeeDoesNotExistException {
+		
+		assertEquals(true, userDao.updateLastName(1, "Iurato"));
+	}
+	
+	@Test
+	public void updatelastNameFails() throws EmployeeDoesNotExistException  {
+		
+		expectedException.expect(EmployeeDoesNotExistException.class);
+		userDao.updateLastName(100000000, "Iurato");
 	}
 	
 	// need expectedException since user no longer exist
@@ -140,7 +173,7 @@ public class ExpenseRTest {
 	public void createReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
 
 		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
-		boolean worked = rsDao.createReimbursement(1, file, 0, 10000.99);
+		boolean worked = rsDao.createReimbursement(1,2,"Want my Money!", file, 0, 10000.99);
 		assertEquals(true, worked);
 		
 	}

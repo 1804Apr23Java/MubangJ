@@ -9,7 +9,7 @@ import com.revature.tables.Reimbursement;
 
 public interface ReimbursementDao {
 	
-	boolean createReimbursement(int employeeId, File image, int status, double amount) throws InvalidImageException;
+	boolean createReimbursement(int employeeId, int managerId, String purpose, File image, int status, double amount) throws InvalidImageException;
 	
 	Reimbursement getReimbursement(int reimbursementId) throws ReimbursementDoesNotExistException;
 	List<Reimbursement> getEmpReimbursements(int employeeId) throws ReimbursementDoesNotExistException;

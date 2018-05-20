@@ -17,6 +17,9 @@ public class ViewRequestServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String pathInfo = request.getPathInfo(); 
+//		String[] pathParts = pathInfo.split("/");
+		
 		request.getRequestDispatcher("viewReimbursementRequest.jsp").forward(request, response);
 	}
 

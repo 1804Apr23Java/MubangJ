@@ -33,6 +33,8 @@ public class RegisterServlet extends HttpServlet {
 		//PrintWriter pw = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String fName = request.getParameter("firstname");
+		String lName = request.getParameter("lastname");
 		String email = request.getParameter("email");
 		int isManager = Integer.parseInt(request.getParameter("isManager"));
 		
@@ -40,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 		User user = null;
 		try {
 			
-			userDao.insertUser(username, password, email, isManager);
+			userDao.insertUser(username, password, fName, lName, email, isManager);
 			user = userDao.getUserByNameAndPass(username, password);
 			
 		} catch (CreateEmployeeFailedException | EmployeeDoesNotExistException e) {
@@ -51,6 +53,8 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		session.setAttribute("username", user.getUsername());
+		session.setAttribute("firstname", user.getfName());
+		session.setAttribute("lastname", user.getLName());
 		session.setAttribute("userId", user.getUserId());
 		session.setAttribute("email",user.getEmail());
 		session.setAttribute("isManager",user.getIsManager());

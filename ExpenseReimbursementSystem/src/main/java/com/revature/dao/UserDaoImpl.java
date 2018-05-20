@@ -20,7 +20,7 @@ import com.revature.util.ConnectionUtil;
 public class UserDaoImpl implements UserDao {
 	
 	@Override
-	public boolean insertUser(String username, String password, String email, int manager) throws CreateEmployeeFailedException {
+	public boolean insertUser(String username, String password, String FName, String LName, String email, int isManager) throws CreateEmployeeFailedException {
 		PreparedStatement pstmt = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			pstmt.setString(3, email);
-			pstmt.setInt(4, manager);
+			pstmt.setInt(4, isManager);
 			int i = pstmt.executeUpdate();
 			conn.close();
 
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, EMAIL, MANAGER FROM USERS WHERE USERID = ?";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, userId);
 			ResultSet rs = pstmt.executeQuery();
@@ -65,9 +65,11 @@ public class UserDaoImpl implements UserDao {
 				int userId1 = rs.getInt("USERID");
 				String username = rs.getString("USERNAME");
 				String password = rs.getString("UPASSWORD");
+				String fName = rs.getString("FName");
+				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, username, password, email, isManager);
+				user = new User(userId1, username, password, fName, lName, email, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -90,7 +92,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, EMAIL, MANAGER FROM USERS WHERE USERNAME = ? AND UPASSWORD = ?";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS WHERE USERNAME = ? AND UPASSWORD = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -101,9 +103,11 @@ public class UserDaoImpl implements UserDao {
 				int userId1 = rs.getInt("USERID");
 				String usernamee = rs.getString("USERNAME");
 				String passwordd = rs.getString("UPASSWORD");
+				String fName = rs.getString("FNAME");
+				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, usernamee, passwordd, email, isManager);
+				user = new User(userId1, usernamee, passwordd, fName, lName, email, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -126,17 +130,19 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, EMAIL, MANAGER FROM USERS";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS";
 			pstmt = conn.prepareCall(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int userId = rs.getInt("USERID");
+				int userId1 = rs.getInt("USERID");
 				String username = rs.getString("USERNAME");
 				String password = rs.getString("UPASSWORD");
+				String fName = rs.getString("FName");
+				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
 				int isManager = rs.getInt("MANAGER");
-				users.add(new User(userId, username, password, email, isManager));
+				users.add(new User(userId1, username, password, fName, lName, email, isManager));
 			}
 			
 			conn.close();
@@ -229,7 +235,7 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public boolean updateIsManager(int userId, int isManager) {
+	public boolean updateIsManager(int userId, int isManager) throws EmployeeDoesNotExistException {
 		PreparedStatement pstmt = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
@@ -242,7 +248,58 @@ public class UserDaoImpl implements UserDao {
 			conn.close();
 
 			if (i > 0) return true;
+			else throw new EmployeeDoesNotExistException(); 
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e3) {
+			e3.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean updateFirstName(int userId, String fName) throws EmployeeDoesNotExistException {
+		PreparedStatement pstmt = null;
+		
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
+			String sql = "UPDATE USERS SET FNAME = ? WHERE USERID = ?";
+			pstmt = conn.prepareCall(sql);
+			pstmt.setString(1, fName);
+			pstmt.setInt(2, userId);
+			int i = pstmt.executeUpdate();
+			conn.close();
+
+			if (i > 0) return true;
+			else throw new EmployeeDoesNotExistException(); 
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e3) {
+			e3.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean updateLastName(int userId, String lName) throws EmployeeDoesNotExistException{
+		PreparedStatement pstmt = null;
+		
+		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			
+			String sql = "UPDATE USERS SET LNAME = ? WHERE USERID = ?";
+			pstmt = conn.prepareCall(sql);
+			pstmt.setString(1, lName);
+			pstmt.setInt(2, userId);
+			int i = pstmt.executeUpdate();
+			conn.close();
+
+			if (i > 0) return true;
+			else throw new EmployeeDoesNotExistException(); 
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
