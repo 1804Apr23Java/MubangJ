@@ -3,6 +3,9 @@ package com.revature.expensetest;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -168,14 +171,25 @@ public class ExpenseRTest {
 /********************* ReimbursementsDao Test  ***************************/
 	
 	ReimbursementDao rsDao = new ReimbursementDaoImpl();
+	
+	
 
+	
 	@Test
 	public void createReimbursementIntoReimbursementTable() throws InvalidImageException, URISyntaxException {
-
-		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
-		boolean worked = rsDao.createReimbursement(1,2,"Want my Money!", file, 0, 10000.99);
-		assertEquals(true, worked);
 		
+		File file = new File("./src/main/resources/StatueOfLiberty.jpg");
+
+		InputStream inputstream = null;
+		
+		try {
+			inputstream = new FileInputStream(file);
+		} catch(FileNotFoundException e) {
+			e.getMessage();
+		}
+
+		boolean worked = rsDao.createReimbursement(1,2,"Want my Money!", inputstream, 0, 10000.99);
+		assertEquals(true, worked);
 	}
 	
 	@Test
@@ -189,7 +203,7 @@ public class ExpenseRTest {
 	public void getAllEmpReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
 		List<Reimbursement> allRbs = rsDao.getEmpReimbursements(1);
-		assertEquals(4, allRbs.size());
+		assertEquals(6, allRbs.size());
 	}
 	
 	@Test

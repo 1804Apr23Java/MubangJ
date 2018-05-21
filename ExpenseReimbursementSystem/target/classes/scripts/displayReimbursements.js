@@ -99,7 +99,7 @@ function populateReimbursements(xhr) {
 	if (xhr.responseText) {
 //		console.log(xhr.responseText);
 		var res = JSON.parse(xhr.responseText);
-		console.log(res);
+//		console.log(res);
 		if (res.reimbursements) {
 			for (i = 0, len = res.reimbursements.length; i < len; i++) {
 				var row = body.insertRow(i);

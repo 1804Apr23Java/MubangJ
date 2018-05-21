@@ -1,7 +1,5 @@
 package com.revature.tables;
 
-import java.sql.Blob;
-
 public class Reimbursement {
 	
 	// status 0 = pending , status 1 = approved
@@ -9,6 +7,8 @@ public class Reimbursement {
 	private int reimbursementId;
 	private int employeeId;
 	private int managerId;
+//	private String firstName;
+//	private String lastName;
 	private String purpose;
 	private String image;
 	private int status;
@@ -27,6 +27,8 @@ public class Reimbursement {
 		this.amount = amount;
 		this.date = date;
 	}
+	
+	
 
 	public int getReimbursementId() {
 		return reimbursementId;

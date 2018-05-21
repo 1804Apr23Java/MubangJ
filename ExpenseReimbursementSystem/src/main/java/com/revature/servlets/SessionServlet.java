@@ -30,6 +30,13 @@ public class SessionServlet extends HttpServlet {
 		if(session!=null) {
 			response.setContentType("application/json");
 			
+//			session.setAttribute("username", user.getUsername());
+//			session.setAttribute("firstname", user.getfName());
+//			session.setAttribute("lastname", user.getLName());
+//			session.setAttribute("userId", user.getUserId());
+//			session.setAttribute("email",user.getEmail());
+//			session.setAttribute("isManager",user.getIsManager());
+			
 			response.getWriter().write("{\"username\":\""+session.getAttribute("username")+"\"}");
 			
 		} else {

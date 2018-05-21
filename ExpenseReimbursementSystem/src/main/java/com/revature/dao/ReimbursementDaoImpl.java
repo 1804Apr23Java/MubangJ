@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,21 +22,19 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	
 
 	@Override
-	public boolean createReimbursement(int employeeId, int managerId, String purpose, File image, int status, double amount) throws InvalidImageException {
+	public boolean createReimbursement(int employeeId, int managerId, String purpose, InputStream image, int status, double amount) throws InvalidImageException {
 		
 		PreparedStatement pstmt = null;
-		InputStream inputstream = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
-			// inputstream = part.getInputStream();
-			inputstream = new FileInputStream(image);
+
 			String sql = "INSERT INTO REIMBURSEMENTS (EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT) VALUES (?,?,?,?,?,?)";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, employeeId);
 			pstmt.setInt(2, managerId);
 			pstmt.setString(3, purpose);
-			if (inputstream != null) {
-				pstmt.setBlob(4, inputstream);
+			if (image != null) {
+				pstmt.setBlob(4, image);
 			}
 			pstmt.setInt(5, status);
 			pstmt.setDouble(6, amount);
@@ -100,7 +97,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE EMPLOYEEID = ?";
+			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE EMPLOYEEID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, employeeId);
 
@@ -112,7 +109,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int employeeIdd = rs.getInt("EMPLOYEEID");
 				int managerId = rs.getInt("MANAGERID");
 				String purpose = rs.getString("PURPOSE");
-				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
+				String image = null;
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
@@ -142,7 +139,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE MANAGERID = ?";
+			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE MANAGERID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, managerId);
 			ResultSet rs = pstmt.executeQuery();
@@ -153,7 +150,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int employeeId = rs.getInt("EMPLOYEEID");
 				int managerIdd = rs.getInt("MANAGERID");
 				String purpose = rs.getString("PURPOSE");
-				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
+				String image = null;
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");

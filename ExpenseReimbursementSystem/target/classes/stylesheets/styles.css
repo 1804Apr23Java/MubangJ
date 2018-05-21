@@ -10,3 +10,7 @@ body h1 {
 	text-align: center;
 	margin: 5% 5%;
 }
+
+div .success {
+	margin-top: 3%;
+}
