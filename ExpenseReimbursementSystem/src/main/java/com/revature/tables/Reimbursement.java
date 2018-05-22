@@ -7,20 +7,22 @@ public class Reimbursement {
 	private int reimbursementId;
 	private int employeeId;
 	private int managerId;
-//	private String firstName;
-//	private String lastName;
+	private String firstName;
+	private String lastName;
 	private String purpose;
 	private String image;
 	private int status;
 	private double amount;
 	private String date;
 	
-	public Reimbursement(int reimbursementId, int employeeId, int managerId, String purpose, String image, int status,
+	public Reimbursement(int reimbursementId, int employeeId, int managerId, String firstName, String lastName, String purpose, String image, int status,
 			double amount, String date) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
 		this.managerId = managerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.purpose = purpose;
 		this.image = image;
 		this.status = status;
@@ -29,6 +31,30 @@ public class Reimbursement {
 	}
 	
 	
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
 
 	public int getReimbursementId() {
 		return reimbursementId;

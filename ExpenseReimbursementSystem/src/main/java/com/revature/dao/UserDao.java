@@ -12,11 +12,11 @@ import com.revature.tables.User;
 
 public interface UserDao {
 	
-	boolean insertUser(String username, String password, String FName, String LName, String email, int isManager) throws CreateEmployeeFailedException;
+	boolean insertUser(String username, String password, String FName, String LName, String email,int managerId, int isManager) throws CreateEmployeeFailedException;
 	
 	User getUserById(int userId) throws EmployeeDoesNotExistException;
 	User getUserByNameAndPass(String username, String password) throws EmployeeDoesNotExistException;
-	List<User> getUsers();
+	List<User> getUsers(int managerId);
 	
 	boolean updateUsername(int userId, String username) throws UsernameExistException, SQLIntegrityConstraintViolationException;
 	boolean updateUserPass(int userId, String password) throws InvalidPasswordException;

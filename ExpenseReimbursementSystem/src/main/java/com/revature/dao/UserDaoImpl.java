@@ -20,17 +20,20 @@ import com.revature.util.ConnectionUtil;
 public class UserDaoImpl implements UserDao {
 	
 	@Override
-	public boolean insertUser(String username, String password, String FName, String LName, String email, int isManager) throws CreateEmployeeFailedException {
+	public boolean insertUser(String username, String password, String fName, String lName, String email, int managerId, int isManager) throws CreateEmployeeFailedException {
 		PreparedStatement pstmt = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "INSERT INTO USERS (USERNAME, UPASSWORD, EMAIL, MANAGER) VALUES (?,?,?,?)";
+			String sql = "INSERT INTO USERS (USERNAME, UPASSWORD, EMAIL, FNAME, LNAME, MANAGERID, MANAGER) VALUES (?,?,?,?, ?, ?, ?)";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			pstmt.setString(3, email);
-			pstmt.setInt(4, isManager);
+			pstmt.setString(4, fName);
+			pstmt.setString(5, lName);
+			pstmt.setInt(6, managerId);
+			pstmt.setInt(7, isManager);
 			int i = pstmt.executeUpdate();
 			conn.close();
 
@@ -55,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS WHERE USERID = ?";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS WHERE USERID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, userId);
 			ResultSet rs = pstmt.executeQuery();
@@ -68,8 +71,9 @@ public class UserDaoImpl implements UserDao {
 				String fName = rs.getString("FName");
 				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
+				int managerId = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, username, password, fName, lName, email, isManager);
+				user = new User(userId1, username, password, fName, lName, email, managerId, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -92,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS WHERE USERNAME = ? AND UPASSWORD = ?";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS WHERE USERNAME = ? AND UPASSWORD = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -106,8 +110,9 @@ public class UserDaoImpl implements UserDao {
 				String fName = rs.getString("FNAME");
 				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
+				int managerId = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, usernamee, passwordd, fName, lName, email, isManager);
+				user = new User(userId1, usernamee, passwordd, fName, lName, email, managerId, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -124,13 +129,13 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public List<User> getUsers() {
+	public List<User> getUsers(int managerId) {
 		PreparedStatement pstmt = null;
 		List<User> users = new ArrayList<>();
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGER FROM USERS";
+			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS";
 			pstmt = conn.prepareCall(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -141,8 +146,9 @@ public class UserDaoImpl implements UserDao {
 				String fName = rs.getString("FName");
 				String lName = rs.getString("LNAME");
 				String email = rs.getString("EMAIL");
+				int managerIdd = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				users.add(new User(userId1, username, password, fName, lName, email, isManager));
+				users.add(new User(userId1, username, password, fName, lName, email, managerIdd, isManager));
 			}
 			
 			conn.close();

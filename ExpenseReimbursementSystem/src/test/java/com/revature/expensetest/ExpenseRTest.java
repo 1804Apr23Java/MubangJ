@@ -49,15 +49,15 @@ public class ExpenseRTest {
 	@Test
 	public void testUserIsinsertedIntoUsersTableAndIfExceptionIsThrown() throws CreateEmployeeFailedException, SQLIntegrityConstraintViolationException {
 		// throws exception if username/email exist in table
-		expectedException.expect(CreateEmployeeFailedException.class);
+//		expectedException.expect(CreateEmployeeFailedException.class);
 
-		boolean worked = userDao.insertUser("newUser6", "newPass6", "Dave", "Brewer", "newUser5@gmail.com", 0);
+		boolean worked = userDao.insertUser("newUser8", "newPass8", "Dave", "Brewer", "newUser8@gmail.com", 1, 0);
 		assertEquals(true, worked);
 	}
 	
 	@Test
 	public void getAllUsersFromUsersTable() {
-		assertEquals(5, userDao.getUsers().size());
+		assertEquals(8, userDao.getUsers(1).size());
 	}
 	
 	@Test
@@ -196,7 +196,15 @@ public class ExpenseRTest {
 	public void getReimbursementFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
 		Reimbursement rbs = rsDao.getReimbursement(1);
-		assertEquals(1, rbs.getEmployeeId());
+		assertEquals("Jake", rbs.getFirstName());
+	}
+	
+	@Test
+	public void failToGetNonExistentReimbursementFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+		
+		expectedException.expect(ReimbursementDoesNotExistException.class);
+
+		rsDao.getReimbursement(1000000);
 	}
 	
 	@Test

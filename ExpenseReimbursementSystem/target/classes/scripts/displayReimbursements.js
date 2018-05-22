@@ -112,7 +112,7 @@ function populateReimbursements(xhr) {
 				var cell0 = row.insertCell(0);
 				cell0.appendChild(anchor);
 				
-				row.insertCell(1).innerHTML = "JJ Mubang";
+				row.insertCell(1).innerHTML = res.reimbursements[i].firstName + " " + res.reimbursements[i].lastName;
 				row.insertCell(2).innerHTML = res.reimbursements[i].purpose;
 				row.insertCell(3).innerHTML = res.reimbursements[i].amount;
 				var status = res.reimbursements[i].status;

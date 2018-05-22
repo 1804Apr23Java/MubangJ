@@ -8,9 +8,11 @@ public class User {
 	private String fName;
 	private String LName;
 	private String email;
+	private int managerId;
 	private int isManager;
 	
-	public User(int userId, String username, String password, String fName, String lName, String email, int isManager) {
+	public User(int userId, String username, String password, String fName, String lName, String email, int managerId,
+			int isManager) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -18,6 +20,7 @@ public class User {
 		this.fName = fName;
 		LName = lName;
 		this.email = email;
+		this.managerId = managerId;
 		this.isManager = isManager;
 	}
 	
@@ -57,13 +60,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public int getManagerId() {
+		return managerId;
+	}
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	}
 	public int getIsManager() {
 		return isManager;
 	}
 	public void setIsManager(int isManager) {
 		this.isManager = isManager;
 	}
-
+	
 
 	
 

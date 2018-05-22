@@ -55,8 +55,7 @@ public class CreateRequestServlet extends HttpServlet {
        
         ReimbursementDao rbsDao = new ReimbursementDaoImpl();
         int employeeId = (int) session.getAttribute("userId");
-//        int managerId = (int) session.getAttribute("managerId");
-        int managerId = 1;
+        int managerId = (int) session.getAttribute("managerId");
         try {
 			rbsDao.createReimbursement(employeeId, managerId, purpose, filePart.getInputStream(), 1, amount);
 		} catch (InvalidImageException e) {

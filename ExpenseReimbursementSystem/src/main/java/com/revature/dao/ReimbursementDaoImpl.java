@@ -59,22 +59,29 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, IMAGE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE REIMBURSEMENTID = ?";
+			String sql = "SELECT r.REIMBURSEMENTID, r.EMPLOYEEID, r.MANAGERID, e.FNAME, e.LNAME, r.PURPOSE, r.IMAGE, r.STATUS, r.AMOUNT, r.DATETIME "
+					+ "FROM REIMBURSEMENTS r "
+					+ "INNER JOIN USERS e "
+					+ "ON r.EMPLOYEEID = e.USERID "
+					+ "WHERE r.REIMBURSEMENTID = ?";
+			
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, reimbursementId);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
 				int reimburseId = rs.getInt("REIMBURSEMENTID");
-				int employeeId = rs.getInt("EMPLOYEEID");
-				int managerId = rs.getInt("MANAGERID");
+				int employeeIdd = rs.getInt("EMPLOYEEID");
+				int managerIdd = rs.getInt("MANAGERID");
+				String firstName = rs.getString("FNAME");
+				String lastName = rs.getString("LNAME");
 				String purpose = rs.getString("PURPOSE");
-				String image = DatatypeConverter.printBase64Binary(rs.getBytes("IMAGE"));
+				String image = rs.getBlob("IMAGE");
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
 				
-				rb = new Reimbursement(reimburseId, employeeId, managerId, purpose, image, status, amount, dateTime);
+				rb = new Reimbursement(reimburseId, employeeIdd, managerIdd, firstName, lastName, purpose, image, status, amount, dateTime);
 
 			} else {
 				throw new ReimbursementDoesNotExistException();
@@ -97,7 +104,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE EMPLOYEEID = ?";
+			String sql = "SELECT r.REIMBURSEMENTID, r.EMPLOYEEID, r.MANAGERID, e.FNAME, e.LNAME, r.PURPOSE, r.STATUS, r.AMOUNT, r.DATETIME "
+					+ "FROM REIMBURSEMENTS r "
+					+ "INNER JOIN USERS e "
+					+ "ON r.EMPLOYEEID = e.USERID "
+					+ "WHERE r.EMPLOYEEID = ?";			
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, employeeId);
 
@@ -107,14 +118,16 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			while (rs.next()) {
 				int reimburseId = rs.getInt("REIMBURSEMENTID");
 				int employeeIdd = rs.getInt("EMPLOYEEID");
-				int managerId = rs.getInt("MANAGERID");
+				int managerIdd = rs.getInt("MANAGERID");
+				String firstName = rs.getString("FNAME");
+				String lastName = rs.getString("LNAME");
 				String purpose = rs.getString("PURPOSE");
 				String image = null;
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
 				
-				allRbs.add(new Reimbursement(reimburseId, employeeIdd, managerId, purpose, image, status, amount, dateTime));
+				allRbs.add(new Reimbursement(reimburseId, employeeIdd, managerIdd, firstName, lastName, purpose, image, status, amount, dateTime));
 
 			} 
 			
@@ -138,8 +151,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<Reimbursement> allRbs = null;
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
-			
-			String sql = "SELECT REIMBURSEMENTID, EMPLOYEEID, MANAGERID, PURPOSE, STATUS, AMOUNT, DATETIME FROM REIMBURSEMENTS WHERE MANAGERID = ?";
+			String sql = "SELECT r.REIMBURSEMENTID, r.EMPLOYEEID, r.MANAGERID, e.FNAME, e.LNAME, r.PURPOSE, r.STATUS, r.AMOUNT, r.DATETIME "
+					+ "FROM REIMBURSEMENTS r "
+					+ "INNER JOIN USERS e "
+					+ "ON r.EMPLOYEEID = e.USERID "
+					+ "WHERE r.MANAGERID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, managerId);
 			ResultSet rs = pstmt.executeQuery();
@@ -149,13 +165,15 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int reimburseId = rs.getInt("REIMBURSEMENTID");
 				int employeeId = rs.getInt("EMPLOYEEID");
 				int managerIdd = rs.getInt("MANAGERID");
+				String firstName = rs.getString("FNAME");
+				String lastName = rs.getString("LNAME");
 				String purpose = rs.getString("PURPOSE");
 				String image = null;
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");
 				
-				allRbs.add(new Reimbursement(reimburseId, employeeId, managerIdd, purpose, image, status, amount, dateTime));
+				allRbs.add(new Reimbursement(reimburseId, employeeId, managerIdd, firstName, lastName, purpose, image, status, amount, dateTime));
 
 			} 
 			
