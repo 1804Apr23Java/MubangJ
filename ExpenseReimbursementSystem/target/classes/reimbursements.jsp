@@ -6,7 +6,7 @@
 
 	<span> <a href="createrequest">add reimbursement</a></span>
 
-	<form name="filterForm">
+	<form id="filterForm" name="filterForm">
 		<input id="allR" type="radio" name="filterType" value="allR" checked> All Reimbursements<br>
 		<input id="pendR" type="radio" name="filterType" value="pendR"> Pending Reimbursements<br>
 		<input id="resR" type="radio" name="filterType" value="resR"> Resolved Reimbursements
@@ -21,7 +21,7 @@
 	  </tbody>
 	</table>
 	
-	<div id="Test">
+	<div id="Test" class="container">
 		
 	</div>
 </div>

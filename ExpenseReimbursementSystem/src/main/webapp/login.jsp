@@ -1,33 +1,34 @@
 <%@ include file="./partials/loggedOutHeader.jsp" %>
 
 <div class="container center">
-    <div class="row">
-		<div class="col-5 mx-auto">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please sign in</h3>
-			 	</div>
-			  	<div class="panel-body">
-			    	<form method="POST" action ="login" accept-charset="UTF-8" role="form">
-                    <fieldset>
-			    	  	<div class="form-group">
-			    		    <input id="username" class="form-control" placeholder="Username" name="username" type="text">
-			    		</div>
-			    		<div class="form-group">
-			    			<input id="password" class="form-control" placeholder="Password" name="password" type="password" value="">
-			    		</div>
-			    		<div class="checkbox">
-			    	    	<label>
-			    	    		<input name="remember" type="checkbox" value="Remember Me"> Remember Me
-			    	    	</label>
-			    	    </div>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
-			    	</fieldset>
-			      	</form>
-			    </div>
+	<div class="row">
+		<aside class="col-5 mx-auto">
+			<div class="card">
+				<article class="card-body">
+					<a href="register" class="float-right btn btn-outline-primary">Sign up</a>
+					<h4 class="card-title mb-4 mt-1">Sign in</h4>
+					<form method="POST" action="login" accept-charset="UTF-8">
+						<div class="form-group">
+							<label>Username</label>
+							<input id="username" class="form-control" placeholder="Username"
+								name="username" type="text">
+						</div>
+						<!-- form-group// -->
+						<div class="form-group">
+							<label>Password</label> 
+							<input id="password" class="form-control" placeholder="Password" name="password" type="password" value="">							
+						</div>
+						<!-- form-group// -->
+						<div class="form-group">
+							<input class="btn btn-primary btn-block" type="submit" value="Login">				
+						</div>
+						<!-- form-group// -->
+					</form>
+				</article>
 			</div>
-		</div>
+		</aside>
 	</div>
+	
 </div>
 
-<%@ include file="./partials/footer.jsp" %>
+	<%@ include file="./partials/footer.jsp" %>

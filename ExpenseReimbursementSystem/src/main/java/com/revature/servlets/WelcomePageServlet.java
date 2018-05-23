@@ -34,9 +34,17 @@ public class WelcomePageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
-		
-//		request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+
+		if (session != null && session.getAttribute("username") != null) {
+			
+			request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
+//			response.sendRedirect("welcome");
+			
+		} else {
+			response.sendRedirect("login");
+			
+		}
 	}
 
 }

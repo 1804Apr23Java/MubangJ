@@ -34,11 +34,10 @@
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 							<div class="container">
-								<form id="updateUserForm" action="" method="POST" enctype="multipart/form-data">
+								<form id="updateUserForm" action="profile" method="POST" enctype="multipart/form-data">
 									<div class="form-group">
-										<label id="firstEnter" for="oldName"></label> <input
-											type="text" class="form-control" id="originalVal"
-											 name="firstInputVal" required>
+										<label id="firstEnter" for="oldName"></label> 
+										<input type="text" class="form-control" id="originalVal" name="firstInputVal" required></input>
 									</div>
 									<div class="form-group">
 										<label id="secondEnter" for="newName"></label> <input

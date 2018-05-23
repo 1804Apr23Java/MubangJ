@@ -97,10 +97,18 @@ function populateReimbursements(xhr) {
 
 	
 	if (xhr.responseText) {
-//		console.log(xhr.responseText);
+		console.log(xhr.responseText);
 		var res = JSON.parse(xhr.responseText);
-//		console.log(res);
+		console.log(res);
+		if (res.reimbursements.length == 0) {
+			console.log("here");
+			document.getElementById("filterForm").style.diplay = "none";
+			document.getElementById("Test").innerHTML = "There are no requests to be displayed at this time."
+			return false;
+		}
 		if (res.reimbursements) {
+//			document.getElementById("filterForm").style.diplay = "";
+
 			for (i = 0, len = res.reimbursements.length; i < len; i++) {
 				var row = body.insertRow(i);
 				

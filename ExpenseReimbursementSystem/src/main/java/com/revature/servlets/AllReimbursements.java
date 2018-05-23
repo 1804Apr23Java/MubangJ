@@ -32,6 +32,7 @@ public class AllReimbursements extends HttpServlet {
 		try {
 			reimbursements = rbs.getEmpReimbursements(userId);
 		} catch (ReimbursementDoesNotExistException e) {
+			request.getRequestDispatcher("welcome").forward(request, response);
 		}
 		
 		

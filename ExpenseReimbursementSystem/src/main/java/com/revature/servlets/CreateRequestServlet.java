@@ -62,10 +62,10 @@ public class CreateRequestServlet extends HttpServlet {
 		}
         
         
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(purpose);
-        System.out.println(amount);
+//        System.out.println(firstName);
+//        System.out.println(lastName);
+//        System.out.println(purpose);
+//        System.out.println(amount);
 
 	}
 

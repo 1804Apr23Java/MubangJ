@@ -44,7 +44,7 @@ function submitEditInfo(event) {
 
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			alert(this.responseText);
+			console.log(this.responseText);
 			
 		}
 	};
@@ -52,6 +52,9 @@ function submitEditInfo(event) {
 	xhr.send(formData);
 	
 	modalForm.reset();
+	window.setTimeout(function() {
+		document.location.reload(true);
+	}, 1000);
 //	successStyle.style.display = "block";
 //	for (var pair of formData.entries()) {
 //	    console.log(pair[0]+ ', ' + pair[1]); 

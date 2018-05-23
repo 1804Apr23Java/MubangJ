@@ -26,9 +26,7 @@ function populateUserInfo(xhr) {
 
 	
 	if (xhr.responseText) {
-//		console.log(xhr.responseText);
 		var res = JSON.parse(xhr.responseText);
-//		console.log(res);
 		if (res.user) {
 			
 			document.getElementById("fullName").innerHTML = res.user.fName + " " + res.user.lname;
