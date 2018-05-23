@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dao.UserDao;
+import com.revature.dao.UserDaoImpl;
+import com.revature.tables.User;
+
 
 /**
  * Servlet implementation class SessionServlet
@@ -30,14 +35,22 @@ public class SessionServlet extends HttpServlet {
 		if(session!=null) {
 			response.setContentType("application/json");
 			
-//			session.setAttribute("username", user.getUsername());
-//			session.setAttribute("firstname", user.getfName());
-//			session.setAttribute("lastname", user.getLName());
-//			session.setAttribute("userId", user.getUserId());
-//			session.setAttribute("email",user.getEmail());
-//			session.setAttribute("isManager",user.getIsManager());
 			
-			response.getWriter().write("{\"username\":\""+session.getAttribute("username")+"\"}");
+			String username = (String) session.getAttribute("username");
+			String firstName = (String) session.getAttribute("firstname");
+			String lastName = (String) session.getAttribute("lastname");
+			int userId = (int) session.getAttribute("userId");
+			String email = (String) session.getAttribute("email");
+			int managerId = (int) session.getAttribute("managerId");
+			int isManager = (int) session.getAttribute("isManager");
+			
+			User user = new User(userId, username, null, firstName, lastName, email, managerId, isManager);
+			
+			ObjectMapper om = new ObjectMapper();
+			String userString = om.writeValueAsString(user);
+			response.getWriter().write("{\"user\":"+userString+"}");
+			
+//			response.getWriter().write("{\"username\":\""+username+"\"}");
 			
 		} else {
 			response.setContentType("application/json");

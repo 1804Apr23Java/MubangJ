@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,7 +77,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				String firstName = rs.getString("FNAME");
 				String lastName = rs.getString("LNAME");
 				String purpose = rs.getString("PURPOSE");
-				String image = rs.getBlob("IMAGE");
+				Blob blob = rs.getBlob("IMAGE");	
+				String image = new String(blob.getBytes(1, (int) blob.length()));
 				int status = rs.getInt("STATUS");
 				String dateTime = rs.getTimestamp("DATETIME").toString();
 				double amount = rs.getDouble("AMOUNT");

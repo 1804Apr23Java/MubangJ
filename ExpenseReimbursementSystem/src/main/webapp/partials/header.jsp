@@ -20,7 +20,6 @@
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link active" href="./home">Home <span class="sr-only">(current)</span></a>
 	      <a class="nav-item nav-link" href="./profile">Profile</a>
-	      <a class="nav-item nav-link" href="./editprofile">Edit Profile</a>	      
 	      <a class="nav-item nav-link" href="./createrequest">Create Request</a>
 	      <a class="nav-item nav-link" href="./logout">Logout</a>  	      
 	    </div>

@@ -36,13 +36,16 @@ public class RegisterServlet extends HttpServlet {
 		String fName = request.getParameter("firstname");
 		String lName = request.getParameter("lastname");
 		String email = request.getParameter("email");
+		String company = request.getParameter("company");
 		int isManager = Integer.parseInt(request.getParameter("isManager"));
 		
 		UserDao userDao = new UserDaoImpl();
 		User user = null;
 		try {
-			
-			userDao.insertUser(username, password, fName, lName, email, isManager);
+			// choose managerId at random
+//			int managerId;
+
+			userDao.insertUser(username, password, fName, lName, email, 1, isManager);
 			user = userDao.getUserByNameAndPass(username, password);
 			
 		} catch (CreateEmployeeFailedException | EmployeeDoesNotExistException e) {

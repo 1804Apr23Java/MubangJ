@@ -14,3 +14,23 @@ body h1 {
 div .success {
 	margin-top: 3%;
 }
+
+#usernameBtn, #passwordBtn, #firstNameBtn, #emailBtn{
+	float: right;
+} 
+
+ul li .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    float: right;
+}
+
+div div form #editProfileSbmitBtn{
+	float: right;
+    position: relative;
+    left: 40%;
+    margin-bottom: 20px;
+}
+
+#updateUserForm {
+	margin: 20px;
+}
