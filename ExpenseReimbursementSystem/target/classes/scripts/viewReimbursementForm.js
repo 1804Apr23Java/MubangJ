@@ -13,11 +13,13 @@ function postDecisionUpdate(event) {
 	var formData = new FormData(form);
 	
 	var url = "http://localhost:8083/ExpenseReimbursementSystem/decision";
-	sendAjaxPostTwo(url, formData)
+//	sendAjaxPostTwo(url, formData);
+	sendAjaxPostTwo(url, formData, reloadPage)
+
 	
 };
 
-function sendAjaxPostTwo(url, data) {
+function sendAjaxPostTwo(url, data, callback) {
 	
 	var xhr = new XMLHttpRequest()
 	|| new ActiveXObject("Microsoft.HTTPRequest");
@@ -26,7 +28,7 @@ function sendAjaxPostTwo(url, data) {
 	
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-//			console.log(this)
+			callback();
 		}
 	};
 
@@ -34,3 +36,6 @@ function sendAjaxPostTwo(url, data) {
 	xhr.send(data);
 }
 
+function reloadPage() {
+	   window.location.reload();
+}

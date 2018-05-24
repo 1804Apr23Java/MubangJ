@@ -128,13 +128,13 @@ function populateReimbursements(xhr) {
 				
 				td0Listner[i].addEventListener("click", function(event) {
 					
-//					fullNameDisp.innerHTML = "";
-//					manFullNameDisp.innerHTML = "";
-//					purposeDisp.innerHTML = "";
-//					amountDisp.innerHTML = "";
-//					statusDisp.innerHTML = "";
-//					dateDisp.innerHTML = "";
-//					img.src = "";
+					fullNameDisp.innerHTML = "";
+					manFullNameDisp.innerHTML = "";
+					purposeDisp.innerHTML = "";
+					amountDisp.innerHTML = "";
+					statusDisp.innerHTML = "";
+					dateDisp.innerHTML = "";
+					img.src = "";
 					
 					var reimbursementId = event.target.innerHTML;
 

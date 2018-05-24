@@ -21,9 +21,9 @@
 			</label>			
 		</div>  -->
 		<input id="allR" type="radio" name="filterType" value="allR" checked> All Reimbursements<br>
-		<input id="gPendR" type="radio" name="filterType" value="gPendR"> General Pending Reimbursements<br>
-		<input id="sPendR" type="radio" name="filterType" value="sPendR"> Self Pending Reimbursements<br>
-		<input id="resR" type="radio" name="filterType" value="resR"> Resolved Reimbursements
+		<input id="gPendR" type="radio" name="filterType" value="gPendR"> Pending Reimbursements<br>
+<!-- 		<input id="sPendR" type="radio" name="filterType" value="sPendR"> Self Pending Reimbursements<br>
+ -->		<input id="resR" type="radio" name="filterType" value="resR"> Resolved Reimbursements
 	</form>
 
 	<table class="table table-hover mt-3">
@@ -54,7 +54,7 @@
 					<div class="form-group" class="container" id="reimburseImage">
 						<img src="">
 					</div>
-					<button id="viewReceiptBtn"  class="btn btn-primary">View Receipt</button>					
+					<button id="viewReceiptBtn"  class="btn btn-primary">View Info</button>					
 					
 					<!-- <button id="" type="submit" class="btn btn-primary">Submit</button> -->
 				
