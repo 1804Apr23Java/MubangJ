@@ -58,7 +58,10 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS WHERE USERID = ?";
+			String sql = "SELECT e.USERID, e.USERNAME, e.UPASSWORD, e.FNAME, e.LNAME, e.EMAIL, e.MANAGERID, m.FNAME AS MANFNAME, m.LNAME AS MANLNAME, e.MANAGER " + 
+					"FROM USERS e, USERS m " + 
+					"WHERE e.MANAGERID = m.USERID " + 
+					"AND e.USERID = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setInt(1, userId);
 			ResultSet rs = pstmt.executeQuery();
@@ -66,14 +69,16 @@ public class UserDaoImpl implements UserDao {
 			if (rs.next()) {
 				
 				int userId1 = rs.getInt("USERID");
-				String username = rs.getString("USERNAME");
-				String password = rs.getString("UPASSWORD");
-				String fName = rs.getString("FName");
+				String usernamee = rs.getString("USERNAME");
+				String passwordd = rs.getString("UPASSWORD");
+				String fName = rs.getString("FNAME");
 				String lName = rs.getString("LNAME");
+				String manFName = rs.getString("MANFNAME");
+				String manLName = rs.getString("MANLNAME");
 				String email = rs.getString("EMAIL");
 				int managerId = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, username, password, fName, lName, email, managerId, isManager);
+				user = new User(userId1, usernamee, passwordd, fName, lName, manFName, manLName, email, managerId, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -96,7 +101,9 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS WHERE USERNAME = ? AND UPASSWORD = ?";
+			String sql = "SELECT e.USERID, e.USERNAME, e.UPASSWORD, e.FNAME, e.LNAME, e.EMAIL, e.MANAGERID, m.FNAME AS MANFNAME, m.LNAME AS MANLNAME, e.MANAGER " + 
+					"FROM USERS e, USERS m " + 
+					"WHERE e.MANAGERID = m.USERID AND e.USERNAME = ? AND e.UPASSWORD = ?";
 			pstmt = conn.prepareCall(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -109,10 +116,12 @@ public class UserDaoImpl implements UserDao {
 				String passwordd = rs.getString("UPASSWORD");
 				String fName = rs.getString("FNAME");
 				String lName = rs.getString("LNAME");
+				String manFName = rs.getString("MANFNAME");
+				String manLName = rs.getString("MANLNAME");
 				String email = rs.getString("EMAIL");
 				int managerId = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				user = new User(userId1, usernamee, passwordd, fName, lName, email, managerId, isManager);
+				user = new User(userId1, usernamee, passwordd, fName, lName, manFName, manLName, email, managerId, isManager);
 				
 			} else {
 				throw new EmployeeDoesNotExistException();
@@ -129,26 +138,30 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public List<User> getUsers(int managerId) {
+	public List<User> getUsers() {
 		PreparedStatement pstmt = null;
 		List<User> users = new ArrayList<>();
 		
 		try(Connection conn = ConnectionUtil.getConnectionFromFile()) {
 			
-			String sql = "SELECT USERID, USERNAME, UPASSWORD, FNAME, LNAME, EMAIL, MANAGERID, MANAGER FROM USERS";
+			String sql = "SELECT e.USERID, e.USERNAME, e.UPASSWORD, e.FNAME, e.LNAME, e.EMAIL, e.MANAGERID, m.FNAME AS MANFNAME, m.LNAME AS MANLNAME, e.MANAGER \n" + 
+					"FROM USERS e, USERS m\n" + 
+					"WHERE e.MANAGERID = m.USERID";
 			pstmt = conn.prepareCall(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int userId1 = rs.getInt("USERID");
+				int userId = rs.getInt("USERID");
 				String username = rs.getString("USERNAME");
 				String password = rs.getString("UPASSWORD");
 				String fName = rs.getString("FName");
 				String lName = rs.getString("LNAME");
+				String manFName = rs.getString("MANFNAME");
+				String manLName = rs.getString("MANLNAME");
 				String email = rs.getString("EMAIL");
 				int managerIdd = rs.getInt("MANAGERID");
 				int isManager = rs.getInt("MANAGER");
-				users.add(new User(userId1, username, password, fName, lName, email, managerIdd, isManager));
+				users.add(new User(userId, username, password, fName, lName, manFName, manLName, email, managerIdd, isManager));			
 			}
 			
 			conn.close();

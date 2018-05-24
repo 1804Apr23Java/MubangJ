@@ -82,6 +82,30 @@
   	<description></description>
   	<servlet-class>com.revature.servlets.AllReimbursements</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AllEmployees</servlet-name>
+  	<display-name>AllEmployees</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.AllEmployees</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewEmployees</servlet-name>
+  	<display-name>ViewEmployees</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.ViewEmployees</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SingleReimbursement</servlet-name>
+  	<display-name>SingleReimbursement</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.SingleReimbursement</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ApproveOrDenyReimbursement</servlet-name>
+  	<display-name>ApproveOrDenyReimbursement</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.servlets.ApproveOrDenyReimbursement</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MasterServlet</servlet-name>
   	<url-pattern>/home</url-pattern>
@@ -133,5 +157,21 @@
   <servlet-mapping>
   	<servlet-name>AllReimbursements</servlet-name>
   	<url-pattern>/allreimbursements</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AllEmployees</servlet-name>
+  	<url-pattern>/employees</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewEmployees</servlet-name>
+  	<url-pattern>/viewEmployees</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SingleReimbursement</servlet-name>
+  	<url-pattern>/reimbursementView</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ApproveOrDenyReimbursement</servlet-name>
+  	<url-pattern>/decision</url-pattern>
   </servlet-mapping>
 </web-app>

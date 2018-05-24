@@ -9,52 +9,31 @@ public class Reimbursement {
 	private int managerId;
 	private String firstName;
 	private String lastName;
+	private String manFirstName;
+	private String manLastName;
 	private String purpose;
 	private String image;
 	private int status;
 	private double amount;
 	private String date;
 	
-	public Reimbursement(int reimbursementId, int employeeId, int managerId, String firstName, String lastName, String purpose, String image, int status,
-			double amount, String date) {
+	public Reimbursement(int reimbursementId, int employeeId, int managerId, String firstName, String lastName,
+			String manFirstName, String manLastName, String purpose, String image, int status, double amount,
+			String date) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
 		this.managerId = managerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.manFirstName = manFirstName;
+		this.manLastName = manLastName;
 		this.purpose = purpose;
 		this.image = image;
 		this.status = status;
 		this.amount = amount;
 		this.date = date;
 	}
-	
-	
-	
-	public String getFirstName() {
-		return firstName;
-	}
-
-
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-
-
-	public String getLastName() {
-		return lastName;
-	}
-
-
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-
 
 	public int getReimbursementId() {
 		return reimbursementId;
@@ -78,6 +57,38 @@ public class Reimbursement {
 
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getManFirstName() {
+		return manFirstName;
+	}
+
+	public void setManFirstName(String manFirstName) {
+		this.manFirstName = manFirstName;
+	}
+
+	public String getManLastName() {
+		return manLastName;
+	}
+
+	public void setManLastName(String manLastName) {
+		this.manLastName = manLastName;
 	}
 
 	public String getPurpose() {
@@ -119,11 +130,5 @@ public class Reimbursement {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
-	
-	
-
-
-	
+		
 }

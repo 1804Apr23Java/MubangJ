@@ -38,6 +38,14 @@ public class WelcomePageServlet extends HttpServlet {
 
 		if (session != null && session.getAttribute("username") != null) {
 			
+			int userId = (int) session.getAttribute("userId");
+			int manId = (int) session.getAttribute("managerId");
+			
+			if (userId == manId) {
+				request.getRequestDispatcher("manReimbursements.jsp").forward(request, response);
+				return;
+			}
+			
 			request.getRequestDispatcher("reimbursements.jsp").forward(request, response);
 //			response.sendRedirect("welcome");
 			

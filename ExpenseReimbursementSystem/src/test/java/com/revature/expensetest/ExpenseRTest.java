@@ -57,12 +57,12 @@ public class ExpenseRTest {
 	
 	@Test
 	public void getAllUsersFromUsersTable() {
-		assertEquals(8, userDao.getUsers(1).size());
+		assertEquals(10, userDao.getUsers().size());
 	}
 	
 	@Test
 	public void getExistingUserFromUsersTableById() throws EmployeeDoesNotExistException {
-		assertEquals("newUserUpdated", userDao.getUserById(1).getUsername());
+		assertEquals("newUserUpdated@gmail.com", userDao.getUserById(1).getUsername());
 	}
 	
 	@Test
@@ -196,7 +196,7 @@ public class ExpenseRTest {
 	public void getReimbursementFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
 		Reimbursement rbs = rsDao.getReimbursement(1);
-		assertEquals("Jake", rbs.getFirstName());
+		assertEquals("newRegisterFirst", rbs.getFirstName());
 	}
 	
 	@Test
@@ -210,8 +210,8 @@ public class ExpenseRTest {
 	@Test
 	public void getAllEmpReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
-		List<Reimbursement> allRbs = rsDao.getEmpReimbursements(1);
-		assertEquals(6, allRbs.size());
+		List<Reimbursement> allRbs = rsDao.getEmpReimbursements(87);
+		assertEquals(8, allRbs.size());
 	}
 	
 	@Test
@@ -224,16 +224,16 @@ public class ExpenseRTest {
 	@Test
 	public void getAllManReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
 		
-		List<Reimbursement> allRbs = rsDao.getManReimbursements(0);
-		assertEquals(4, allRbs.size());
+		List<Reimbursement> allRbs = rsDao.getManReimbursements();
+		assertEquals(8, allRbs.size());
 	}
 	
-	@Test
-	public void FailToGetNonExistentManReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
-		expectedException.expect(ReimbursementDoesNotExistException.class);
-
-		rsDao.getManReimbursements(10000);
-	}
+//	@Test
+//	public void FailToGetNonExistentManReimbursementsFromReimbursementsTable() throws ReimbursementDoesNotExistException {
+//		expectedException.expect(ReimbursementDoesNotExistException.class);
+//
+//		rsDao.getManReimbursements(10000);
+//	}
 	
 	@Test
 	public void updateImageInReimbursementsTable() throws ReimbursementDoesNotExistException {

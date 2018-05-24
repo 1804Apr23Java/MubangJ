@@ -42,10 +42,12 @@ public class SessionServlet extends HttpServlet {
 			int userId = (int) session.getAttribute("userId");
 			String email = (String) session.getAttribute("email");
 			int managerId = (int) session.getAttribute("managerId");
+			String manFirstName = (String) session.getAttribute("manFirstName");
+			String manLastName = (String) session.getAttribute("manLastName");
 			int isManager = (int) session.getAttribute("isManager");
 			
-			User user = new User(userId, username, null, firstName, lastName, email, managerId, isManager);
-			
+			User user = new User(userId, username, null, firstName, lastName, manFirstName, manLastName,  email, managerId, isManager);
+//			user(userId, username, password, fName, lName, manFirstName, manLastName, email, managerId, sManager) 
 			ObjectMapper om = new ObjectMapper();
 			String userString = om.writeValueAsString(user);
 			response.getWriter().write("{\"user\":"+userString+"}");

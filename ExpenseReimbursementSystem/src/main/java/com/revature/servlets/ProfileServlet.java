@@ -50,10 +50,12 @@ public class ProfileServlet extends HttpServlet {
 		String firstVal = (String) req.getParameter("firstInputVal");
         String secondVal = (String) req.getParameter("secondInputVal");
         String thirdVal = (String) req.getParameter("thirdInputVal");
+        
+        String sessionFullName = session.getAttribute("firstName") + " " + session.getAttribute("lastName");
                 
-        System.out.println(firstVal);
-        System.out.println(secondVal);
-        System.out.println(thirdVal);
+//        System.out.println(firstVal);
+//        System.out.println(secondVal);
+//        System.out.println(thirdVal);
         
          UserDao userDao = new UserDaoImpl();
          
@@ -69,18 +71,28 @@ public class ProfileServlet extends HttpServlet {
  					e.printStackTrace();
  				}
          	}
-         } else if (firstVal.equals(session.getAttribute("firstName") + " " + session.getAttribute("lastName"))) {
+         } else if (firstVal.equals(session.getAttribute("email"))) {
+         	if (secondVal.equals(thirdVal)) {
+             	try {
+ 					userDao.updateUsername((int) session.getAttribute("userId"), secondVal);
+ 					session.setAttribute("email", secondVal);
+
+             	} catch (SQLIntegrityConstraintViolationException e) {
+ 					e.printStackTrace();
+ 				} catch (UsernameExistException e) {
+ 					e.printStackTrace();
+ 				}
+         	}
+         } else if (firstVal.matches("([A-Za-z]+)\\s+([A-Za-z]+)")) {
         	 String[] fullName = firstVal.split("\\s+");
-        	 if (fullName.length < 2) {
-        		 req.getRequestDispatcher("register");
-        	 }
         	 String firstname = fullName[0];
         	 String lastname = fullName[1];
-        	 System.out.println(fullName[0] + " " + fullName[1]);
+//        	 System.out.println(firstname + " " + lastname);
          	if (secondVal.equals(thirdVal)) {
-         		String[] fullNameUp = secondVal.split("/s+");
+         		String[] fullNameUp = secondVal.split("\\s+");
+         		System.out.println(fullNameUp[0] + " - " + fullNameUp[1]);
          		if (fullNameUp.length < 2) {
-         			req.getRequestDispatcher("register");
+         			req.getRequestDispatcher("profile");
          		}
          		String firstnameUp = fullNameUp[0];
          		String lastnameUp = fullNameUp[1];
@@ -97,14 +109,13 @@ public class ProfileServlet extends HttpServlet {
 
          	}
          } else if (firstVal.equals(session.getAttribute("password"))) {
-        	 System.out.println("here");
          	if (secondVal.equals(thirdVal)) {
  				try {
  					userDao.updateUserPass((int) session.getAttribute("userId"), secondVal);
+ 					session.setAttribute("password", secondVal);
  				} catch (InvalidPasswordException e) {
  					e.printStackTrace();
  				}
- 				
          	}
          }       
 	}

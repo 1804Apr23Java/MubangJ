@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 		//PrintWriter pw = response.getWriter();
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -59,9 +60,12 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("username", user.getUsername());
 		session.setAttribute("firstname", user.getfName());
 		session.setAttribute("lastname", user.getLName());
+		session.setAttribute("password", user.getPassword());
 		session.setAttribute("userId", user.getUserId());
 		session.setAttribute("email",user.getEmail());
 		session.setAttribute("managerId", user.getManagerId());
+		session.setAttribute("manFirstName", user.getManFirstName());
+		session.setAttribute("manLastName", user.getManLastName());
 		session.setAttribute("isManager",user.getIsManager());
 		session.setAttribute("problem", null);
 		response.sendRedirect("home");

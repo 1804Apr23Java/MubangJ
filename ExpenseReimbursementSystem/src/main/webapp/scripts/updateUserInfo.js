@@ -4,7 +4,7 @@
 
 // form
 var modalForm = document.querySelector(".modal-dialog .modal-content #updateUserForm");
-console.log(modalForm);
+//console.log(modalForm);
 
 // inputs
 var firstInput = document.getElementById("originalVal");
@@ -28,7 +28,6 @@ function submitEditInfo(event) {
 //		dangerStyle.style.display = "block";
 		return false;
 	}
-
 	
 //	var dangerStyle = document.querySelector(".alert-danger");
 //	var successStyle = document.querySelector(".alert-success");
@@ -44,8 +43,7 @@ function submitEditInfo(event) {
 
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.responseText);
-			
+//			console.log(this.responseText);			
 		}
 	};
 	
@@ -54,7 +52,7 @@ function submitEditInfo(event) {
 	modalForm.reset();
 	window.setTimeout(function() {
 		document.location.reload(true);
-	}, 1000);
+	}, 2000);
 //	successStyle.style.display = "block";
 //	for (var pair of formData.entries()) {
 //	    console.log(pair[0]+ ', ' + pair[1]); 

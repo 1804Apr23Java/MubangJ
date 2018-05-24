@@ -16,7 +16,7 @@ public interface UserDao {
 	
 	User getUserById(int userId) throws EmployeeDoesNotExistException;
 	User getUserByNameAndPass(String username, String password) throws EmployeeDoesNotExistException;
-	List<User> getUsers(int managerId);
+	List<User> getUsers();
 	
 	boolean updateUsername(int userId, String username) throws UsernameExistException, SQLIntegrityConstraintViolationException;
 	boolean updateUserPass(int userId, String password) throws InvalidPasswordException;

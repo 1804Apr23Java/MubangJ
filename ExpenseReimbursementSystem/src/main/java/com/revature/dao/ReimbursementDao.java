@@ -14,7 +14,7 @@ public interface ReimbursementDao {
 	
 	Reimbursement getReimbursement(int reimbursementId) throws ReimbursementDoesNotExistException;
 	List<Reimbursement> getEmpReimbursements(int employeeId) throws ReimbursementDoesNotExistException;
-	List<Reimbursement> getManReimbursements(int managerId) throws ReimbursementDoesNotExistException;
+	List<Reimbursement> getManReimbursements() throws ReimbursementDoesNotExistException;
 
 	
 	boolean updateImage(int reimbursementId, File image) throws ReimbursementDoesNotExistException;

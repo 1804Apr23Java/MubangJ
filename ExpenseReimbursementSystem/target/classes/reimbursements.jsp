@@ -3,7 +3,7 @@
 
 <div class="container">
 	<h1>History of Reimbursements</h1>
-
+	
 	<span> <a href="createrequest">add reimbursement</a></span>
 
 	<form id="filterForm" name="filterForm">

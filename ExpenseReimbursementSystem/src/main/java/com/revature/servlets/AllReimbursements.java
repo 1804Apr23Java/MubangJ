@@ -19,23 +19,33 @@ import com.revature.tables.Reimbursement;
  * Servlet implementation class AllReimbursements
  */
 public class AllReimbursements extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+
+	private static final long serialVersionUID = -1005791861210743302L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
 
 		ReimbursementDao rbs = new ReimbursementDaoImpl();
-		int userId = (int) session.getAttribute("userId");
 		List<Reimbursement> reimbursements = null;
-		try {
-			reimbursements = rbs.getEmpReimbursements(userId);
-		} catch (ReimbursementDoesNotExistException e) {
-			request.getRequestDispatcher("welcome").forward(request, response);
+	
+		int userId = (int) session.getAttribute("userId");
+		int manId = (int) session.getAttribute("managerId");
+		
+		if (userId == manId) {
+			try {
+				reimbursements = rbs.getManReimbursements();
+			} catch (ReimbursementDoesNotExistException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				reimbursements = rbs.getEmpReimbursements(userId);
+			} catch (ReimbursementDoesNotExistException e) {
+				request.getRequestDispatcher("welcome").forward(request, response);
+			}
 		}
-		
-		
+
 		ObjectMapper om = new ObjectMapper();
 		
 		String reimbursementsString = om.writeValueAsString(reimbursements);

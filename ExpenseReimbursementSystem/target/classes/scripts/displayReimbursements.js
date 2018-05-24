@@ -134,12 +134,6 @@ function populateReimbursements(xhr) {
 				row.insertCell(5).innerHTML = res.reimbursements[i].date;
 			}
 			
-//			var tableArr = table.querySelectorAll("table tbody");
-//			console.log(tableArr[0].children[0].cells[4].innerHTML);
-			
-//			var img = document.createElement('img');
-//			img.src = "data:image/png;base64,"+res.reimbursements[0].image;
-//			document.getElementById("Test").appendChild(img);
 		} else {
 			window.location = "http://localhost:8083/ExpenseReimbursementSystem/welcome";
 		}
