@@ -11,15 +11,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Users")
 public class Users {
-	public Users(int userId, String username) {
+	public Users(int userId, String username, String password) {
 		super();
 		this.userId = userId;
 		this.username = username;
+		this.password = password;
 	}
 	
-	public Users(String username) {
+	public Users(String username, String password) {
 		super();
 		this.username = username;
+		this.password = password;
 	}
 	
 	public Users() {
@@ -29,12 +31,14 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="userSequence")
 	@SequenceGenerator(allocationSize=1,name="userSequence",sequenceName="SQ_USER_PK")
-
 	@Column(name="USER_ID")
 	private int userId;
 	
 	@Column(name="USERNAME")
 	private String username;
+	
+	@Column(name="PASSWORD")
+	private String password;
 
 	public int getUserId() {
 		return userId;
@@ -52,11 +56,19 @@ public class Users {
 		this.username = username;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", username=" + username + "]";
+		return "Users [userId=" + userId + ", username=" + username + ", password=" + password + "]";
 	}
-	
+
 	
 	
 }

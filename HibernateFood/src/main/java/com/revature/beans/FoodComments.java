@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Comments")
-
 public class FoodComments {
 	
 	public FoodComments(int commentId, int userId, String comment) {
@@ -33,7 +32,7 @@ public class FoodComments {
 	@Column(name="USER_ID")
 	private int userId;
 	
-	@Column(name="COMMENT")
+	@Column(name="U_COMMENT")
 	private String comment;
 
 	public int getCommentId() {
