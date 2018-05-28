@@ -22,5 +22,12 @@
   </dependencies>
   <build>
     <finalName>HelloWorldd</finalName>
+    <plugins>
+        <plugin>
+        <groupId>org.cloudfoundry</groupId>
+        <artifactId>cf-maven-plugin</artifactId>
+        <version>1.0.4</version>
+    </plugin>
+    </plugins>
   </build>
 </project>
