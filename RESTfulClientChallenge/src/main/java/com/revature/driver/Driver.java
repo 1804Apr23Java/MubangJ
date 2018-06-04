@@ -15,7 +15,7 @@ public class Driver {
 		
 		UserClient users = ac.getBean("userClient", UserClient.class);
 		
-		users.setResourceUrl("http://localhost:8083/Users");
+		users.setResourceUrl("http://restfulchallenge.cfapps.io");
 		
 		for (C_Users user : users.getUsers()) {
 			System.out.println(user);

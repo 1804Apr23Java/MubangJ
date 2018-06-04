@@ -18,6 +18,11 @@ public class C_Users {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	public C_Users() {
+		super();
+	}
+	
 	public int getId() {
 		return id;
 	}

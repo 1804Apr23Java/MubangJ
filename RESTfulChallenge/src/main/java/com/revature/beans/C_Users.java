@@ -5,7 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name="C_USERS")
 public class C_Users {
-
+	
+	public C_Users() {
+		super();
+	}
+	
 	public C_Users(int id, String firstName, String lastName) {
 		super();
 		this.id = id;

@@ -5,6 +5,7 @@ Implementation-Title: RESTfulChallenge
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.revature.restfulchallenge
 Implementation-Vendor: Pivotal Software, Inc.
-Implementation-URL: http://maven.apache.org
+Implementation-URL: http://projects.spring.io/spring-boot/RESTfulChall
+ enge/
 Created-By: Maven Integration for Eclipse
 

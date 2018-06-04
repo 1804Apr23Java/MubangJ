@@ -12,7 +12,7 @@ spring:
     name: user-app
   datasource:
     platform: oracle
-    url: jdbc:oracle:thin:@apr23java.clp8jwsxbcb2.us-east-2.rds.amazonaws.com:1521:xe
+    url: jdbc:oracle:thin:@apr23java.clp8jwsxbcb2.us-east-2.rds.amazonaws.com:1521:ORCL
     username: guest
     password: p4ssw0rd
     driver-class-name: oracle.jdbc.OracleDriver

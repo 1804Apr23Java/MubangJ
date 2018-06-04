@@ -24,7 +24,7 @@ public class UserClient {
 
 
 	public List<C_Users> getUsers() {
-		ResponseEntity<List<C_Users>> response = this.restTemplate.exchange(this.resourceUrl + "/people/all",
+		ResponseEntity<List<C_Users>> response = this.restTemplate.exchange(this.resourceUrl + "/people/users",
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<C_Users>>() {
 				});
 		return response.getBody();
