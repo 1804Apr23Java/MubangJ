@@ -1,0 +1,21 @@
+server:
+  port: 8085
+  
+endpoints:
+  beans:
+    sensitive: false
+  mappings:
+    sensitive: false
+
+spring:
+  application:
+    name: user-app
+  datasource:
+    platform: oracle
+    url: jdbc:oracle:thin:@apr23java.clp8jwsxbcb2.us-east-2.rds.amazonaws.com:1521:xe
+    username: guest
+    password: p4ssw0rd
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database: ORACLE
+    show-sql: true
